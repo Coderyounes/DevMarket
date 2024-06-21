@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import dotenv from 'dotenv';
 
 dotenv.config();
