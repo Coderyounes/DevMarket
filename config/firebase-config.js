@@ -1,15 +1,16 @@
-import firebase from 'firebase/app';
-import 'firebase/analytics';
+const firebase = require('firebase/app');
+require('firebase/analytics');
+
+require('dotenv').config({ path: './utils/.env' });
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC0tHkLfEB4VFJziXBqTOJumYBOaj9yA8A',
-  authDomain: 'devmarket-f7200.firebaseapp.com',
-  projectId: 'devmarket-f7200',
-  storageBucket: 'devmarket-f7200.appspot.com',
-  messagingSenderId: '849188210586',
-  appId: '1:849188210586:web:2cb4a6f854ac180fdadc23',
-  measurementId: 'G-9NKE63D21E',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();

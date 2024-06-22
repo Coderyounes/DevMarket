@@ -1,7 +1,9 @@
+const jwt = require('jsonwebtoken');
 const { default: firebase } = require('firebase/compat/app');
+const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
 const admin = require('../config/firebase-admin-config');
-
-const auth = firebase.auth();
+require('dotenv').config({ path: './utils/.env' });
+require('../config/firebase-config');
 
 const signUp = async (req, res) => {
   const { email, password } = req.body;
@@ -21,6 +23,22 @@ const signUp = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
+
+  try {
+    const auth = getAuth();
+
+    const userRecord = await signInWithEmailAndPassword(auth, email, password);
+
+    const token = jwt.sign({
+      uid: userRecord.user.uid,
+      email: userRecord.user.email,
+    }, process.env.MY_SECRET, { expiresIn: '1h' });
+
+    res.json({ token });
+  } catch (err) {
+    console.error('Login error', err);
+    res.status(401).json({ error: 'Login failed. Invalid credentials' });
+  }
 };
 
-module.exports = { signUp };
+module.exports = { signUp, login };
