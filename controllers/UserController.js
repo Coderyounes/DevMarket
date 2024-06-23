@@ -8,7 +8,7 @@ const signUp = async (req, res) => {
   const {
     email, password, usertype, firstname, lastname, country,
   } = req.body;
-  if (usertype !== 'freelance' && usertype !== 'jobseeker') {
+  if (usertype !== 'freelance' && usertype !== 'employer') {
     return res.status(400).json({ error: 'Undefined usertype' });
   }
   try {
