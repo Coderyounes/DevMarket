@@ -1,8 +1,8 @@
 // server.js
 
 const express = require('express');
-const admin = require('./config/firebase-admin-config');
 const indexRouter = require('./routes/index');
+const DBClient = require('./utils/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +12,12 @@ app.use(express.json());
 
 // Routes
 app.use('/', indexRouter);
+
+const dbClient = new DBClient();
+dbClient.connect().catch((err) => {
+  console.error('Failed to connect to MongoDB', err);
+  process.exit(1);
+});
 
 // Start server
 app.listen(PORT, () => {

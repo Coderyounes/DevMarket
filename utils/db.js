@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import dotenv from 'dotenv';
+const mongoose = require('mongoose');
+
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ class DBClient {
 
   async connect() {
     try {
-      await mongoose.connect(this.uri, {
+      mongoose.connect(this.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
@@ -27,4 +27,4 @@ class DBClient {
   }
 }
 
-export default DBClient;
+module.exports = DBClient;

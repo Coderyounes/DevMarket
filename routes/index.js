@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
 // Authetication routes
 router.post('/signup', userController.signUp);
 router.post('/login', userController.login);
+router.post('/logout', userController.signOut);
 router.post('/resetpassword');
-router.post('/logout');
 
 // Token Verification
 router.get('/', verifyToken, (req, res) => {
