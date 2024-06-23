@@ -42,10 +42,9 @@ const login = async (req, res) => {
     const auth = getAuth();
 
     const userRecord = await signInWithEmailAndPassword(auth, email, password);
+    const idToken = await userRecord.user.getIdToken();
 
-    // Firebase Method to generate JWT 
-    
-    res.json({ token });
+    res.json({ idToken });
   } catch (err) {
     console.error('Login error', err);
     res.status(401).json({ error: 'Login failed. Invalid credentials' });
@@ -55,7 +54,6 @@ const login = async (req, res) => {
 const signOut = async (req, res) => {
   try {
     const idToken = req.headers.authorization.split('Bearer ')[1];
-    console.log(idToken);
     const decodedToken = await admin.auth().verifyIdToken(idToken);
     await admin.auth().revokeRefreshTokens(decodedToken.uid);
 
