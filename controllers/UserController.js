@@ -53,7 +53,7 @@ const login = async (req, res) => {
 const signOut = async (req, res) => {
   try {
     const idToken = req.headers.authorization.split('Bearer ')[1];
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const decodedToken = await admin.auth().verifyIdToken(idToken, true);
     await admin.auth().revokeRefreshTokens(decodedToken.uid);
 
     res.status(200).send({ message: 'User signed out successfully' });
