@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const dotenv = require('dotenv');
 
+mongoose.set('strictQuery', false);
 dotenv.config();
-
 class DBClient {
   constructor() {
     const uri = process.env.MONGODB_URI;

@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
-const EmployerSchema = new mongoose.Schema({
-  company: {
-    type: String,
-    min: 3,
-    max: 25,
-  },
+const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
     required: true,
@@ -52,5 +47,6 @@ const EmployerSchema = new mongoose.Schema({
   photo: { type: Buffer },
 });
 
-const employer = new mongoose.model('employers', EmployerSchema);
-module.exports = employer;
+const User = new mongoose.model('user', userSchema);
+
+module.exports = User;

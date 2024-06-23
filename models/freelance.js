@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const freelanceSchema = new mongoose.Schema({
-  _id: { type: String, required: true, unique: true },
   firstname: {
     type: String,
     required: true,
@@ -26,7 +25,6 @@ const freelanceSchema = new mongoose.Schema({
   usertype: {
     type: String,
     required: true,
-    enum: ['freelance', 'employer'],
   },
   email: {
     type: String,
@@ -36,6 +34,11 @@ const freelanceSchema = new mongoose.Schema({
     trim: true,
     match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   },
+  age: {
+    type: Number,
+    min: [18, 'Must be at least 18 years old'],
+    max: 100,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -43,7 +46,6 @@ const freelanceSchema = new mongoose.Schema({
   city: { type: String },
   photo: { type: Buffer },
   skills: { type: String },
-
 });
 
 const Freelance = mongoose.model('Freelance', freelanceSchema);
