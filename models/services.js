@@ -25,6 +25,10 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  createdAT: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const service = mongoose.model('Service', serviceSchema);

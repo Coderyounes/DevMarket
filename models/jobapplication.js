@@ -16,6 +16,10 @@ const jobappSchema = new mongoose.Schema({
     ref: 'freelancers',
     required: true,
   },
+  createdAT: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const jobApp = new mongoose.model('jobapplications', jobappSchema);
