@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import dotenv from 'dotenv';
+const mongoose = require('mongoose');
 
+const dotenv = require('dotenv');
+
+mongoose.set('strictQuery', false);
 dotenv.config();
-
 class DBClient {
   constructor() {
     const uri = process.env.MONGODB_URI;
@@ -15,16 +15,16 @@ class DBClient {
 
   async connect() {
     try {
-      await mongoose.connect(this.uri, {
+      mongoose.connect(this.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
       console.log('Connected to MongoDB');
     } catch (err) {
       console.error('Failed to connect to MongoDB', err);
-      throw err; // Optionally re-throw the error for higher-level handling
+      throw err;
     }
   }
 }
 
-export default DBClient;
+module.exports = DBClient;

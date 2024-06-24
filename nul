@@ -1,0 +1,38 @@
+[33m[nodemon] 2.0.22[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+/home/younes/DevMarket/utils/db.js:6
+mongoose.set('strictQuery', true):
+                                 ^
+
+SyntaxError: Unexpected token ':'
+    at internalCompileFunction (node:internal/vm:77:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1290:20)
+    at Module._compile (node:internal/modules/cjs/loader:1342:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Module.require (node:internal/modules/cjs/loader:1237:19)
+    at require (node:internal/modules/helpers:176:18)
+    at Object.<anonymous> (/home/younes/DevMarket/server.js:5:18)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+
+Node.js v21.6.1
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+Connected to MongoDB
+(node:384597) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Server is running on port 3000
+(node:384597) [MONGOOSE] Warning: mongoose: Cannot specify a custom index on `_id` for model name "user", MongoDB does not allow overwriting the default `_id` index. See https://bit.ly/mongodb-id-index
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js`[39m
+Connected to MongoDB
+(node:384692) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:384692) [MONGOOSE] DeprecationWarning: Mongoose: the `strictQuery` option will be switched back to `false` by default in Mongoose 7. Use `mongoose.set('strictQuery', false);` if you want to prepare for this change. Or use `mongoose.set('strictQuery', true);` to suppress this warning.
+Server is running on port 3000
+(node:384692) [MONGOOSE] Warning: mongoose: Cannot specify a custom index on `_id` for model name "user", MongoDB does not allow overwriting the default `_id` index. See https://bit.ly/mongodb-id-index
