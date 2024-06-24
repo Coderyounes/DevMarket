@@ -1,12 +1,29 @@
 const mongoose = require('mongoose');
-// add id
+
 const serviceSchema = new mongoose.Schema({
-  services: {
-    title: { type: String, required: true },
-    Description: { type: String, required: true },
-    Price: { type: mongoose.Schema.Types.Decimal128, required: true },
-    Images: { type: Buffer, required: true },
-    Tags: { type: String, required: true },
+  title: {
+    type: String,
+    required: true,
+    min: 10,
+    max: 100,
+  },
+  Description: {
+    type: String,
+    required: true,
+    min: 200,
+    max: 1000,
+  },
+  Price: {
+    type: Number,
+    required: true,
+  },
+  Images: {
+    type: Buffer,
+    required: true,
+  },
+  Tags: {
+    type: String,
+    required: true,
   },
 });
 
