@@ -36,6 +36,7 @@ const freelanceSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
+    required: true,
     min: [18, 'Must be at least 18 years old'],
     max: 100,
   },

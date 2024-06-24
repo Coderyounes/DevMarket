@@ -18,7 +18,7 @@ router.post('/sendverification'); // Later
 
 // Freelance routes
 router.get('/getProfile', authenticate, freelanceController.getProfile);
-
+router.put('/updateProfile', authenticate, freelanceController.updateProfile);
 // Employer routes
 
 module.exports = router;
