@@ -6,7 +6,7 @@ require('../config/firebase-config');
 
 const signUp = async (req, res) => {
   const {
-    email, password, usertype, firstname, lastname, country, address, city, age, skills, photo
+    email, password, usertype, firstname, lastname, country, address, city, age, skills, photo,
   } = req.body;
   if (usertype !== 'freelance' && usertype !== 'employer') {
     return res.status(400).json({ error: 'Undefined usertype' });
@@ -27,8 +27,8 @@ const signUp = async (req, res) => {
       skills,
       photo,
       usertype,
+      firebaseUID: userRecord.uid,
     };
-    console.log(userData);
     const UserModel = getModelByUserType(usertype);
     const newUser = new UserModel(userData);
     await newUser.save();

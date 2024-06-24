@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/UserController');
+const freelanceController = require('../controllers/freelanceController');
 const { authenticate } = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -12,6 +13,12 @@ router.get('/', (req, res) => {
 router.post('/signup', userController.signUp);
 router.post('/login', userController.login);
 router.post('/logout', authenticate, userController.signOut);
-router.post('/resetpassword');
+router.post('/resetpassword'); // Later
+router.post('/sendverification'); // Later
+
+// Freelance routes
+router.get('/getProfile', authenticate, freelanceController.getProfile);
+
+// Employer routes
 
 module.exports = router;
