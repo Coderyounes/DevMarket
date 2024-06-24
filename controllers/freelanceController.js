@@ -33,7 +33,19 @@ const updateProfile = async (req, res) => {
     return res.status(500).send('Internal Server Error');
   }
 };
-// const deleteProfile = async (req, res) => {};
+
+const deleteProfile = async (req, res) => {
+  try {
+    const user = await freelance.findOne({ firebaseUID: req.user.uid });
+    if (!user) {
+      res.status(404).send('User not found');
+    }
+    // TODO: Logic to remove the user from the firebase
+    // TODO: Logc to remove the user from the mongo database
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
+};
 // const allProfiles = async (req, res) => {}; // Pagination required
 
-module.exports = { getProfile, updateProfile };
+module.exports = { getProfile, updateProfile, deleteProfile };
