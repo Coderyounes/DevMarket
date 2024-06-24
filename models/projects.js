@@ -23,6 +23,10 @@ const projectSchema = new mongoose.Schema({
   },
   employer: { type: mongoose.Schema.Types.ObjectId, ref: 'employers' },
   freelance: { type: mongoose.Schema.Types.ObjectId, ref: 'freelances', default: null },
+  applications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'jobapplications',
+  }],
 });
 
 const project = new mongoose.model('projects', projectSchema);
