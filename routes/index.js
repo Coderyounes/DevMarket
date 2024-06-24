@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/UserController');
 const freelanceController = require('../controllers/freelanceController');
+const visitorController = require('../controllers/visitorController');
 const { authenticate } = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -17,9 +18,13 @@ router.post('/resetpassword'); // Later
 router.post('/sendverification'); // Later
 
 // Freelance routes
-router.get('/getProfile', authenticate, freelanceController.getProfile);
+router.get('/userProfile', authenticate, freelanceController.userProfile);
 router.put('/updateProfile', authenticate, freelanceController.updateProfile);
 router.delete('/deleteProfile', authenticate, freelanceController.deleteProfile);
 // Employer routes
+
+// unauth user routes
+router.get('/getProfile/:id', visitorController.getProfile);
+router.get('/allProfile', visitorController.allProfiles);
 
 module.exports = router;

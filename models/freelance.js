@@ -55,7 +55,3 @@ const freelanceSchema = new mongoose.Schema({
 const Freelance = mongoose.model('Freelance', freelanceSchema);
 
 module.exports = Freelance;
-
-// TODO: Complete other Models Definition & Validation
-// TODO: Setup Basic CRUD operation for Freelancer
-// TODO: Setup Basic CRUD operation for employer
