@@ -1,4 +1,3 @@
-const { waitForPendingWrites } = require('firebase/firestore');
 const mongoose = require('mongoose');
 
 const contractSchema = new mongoose.Schema({
@@ -53,6 +52,6 @@ const contractSchema = new mongoose.Schema({
   },
 });
 
-const contract = new mongoose.model('contracts', contractSchema);
+const contract = mongoose.model('contracts', contractSchema);
 
 module.exports = contract;

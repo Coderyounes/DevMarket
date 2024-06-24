@@ -52,5 +52,5 @@ const EmployerSchema = new mongoose.Schema({
   photo: { type: Buffer },
 });
 
-const employer = new mongoose.model('employers', EmployerSchema);
+const employer = mongoose.model('employers', EmployerSchema);
 module.exports = employer;
