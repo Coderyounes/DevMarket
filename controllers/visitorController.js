@@ -36,4 +36,7 @@ const allProfiles = async (req, res) => {
   }
 };
 
+// TODO: Build a Controller to list all Services Pagination needed
+// TODO: Build a COntroller to list  all Project Pagination needed
+
 module.exports = { getProfile, allProfiles };
