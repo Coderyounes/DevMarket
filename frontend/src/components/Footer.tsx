@@ -10,8 +10,9 @@ export default function Footer() {
               <Link to="/">DevMarket</Link>
 
               <p className="max-w-sm mt-2 text-gray-500 ">
-                Join 31,000+ other and never miss out on new tips, tutorials,
-                and more.
+                Post jobs, find skilled freelancers, and collaborate
+                efficiently. Connect with top talent to get your work done
+                across various industries.
               </p>
 
               <div className="flex mt-6 -mx-2">

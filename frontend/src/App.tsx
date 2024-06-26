@@ -14,10 +14,9 @@ import Faq from "./pages/Faq";
 
 function App() {
   return (
-      <Routes>
+    <Routes>
       <Route path="/" element={<MainLayout />}>
-      <Route index element={<Home />} />
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route index element={<Home />} />
         <Route path="employer" element={<Employer />} />
         <Route path="freelancer" element={<Freelancer />} />
         <Route path="profile" element={<Profile />} />
@@ -29,7 +28,7 @@ function App() {
         <Route path="faq" element={<Faq />} />
         <Route path="*" element={<Error404 />} />
       </Route>
-      </Routes>
+    </Routes>
   );
 }
 
