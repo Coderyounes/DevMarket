@@ -17,6 +17,11 @@ const projectSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  status: {
+    type: String,
+    default: 'Open',
+    enum: ['Open', 'Closed'],
+  },
   delay: {
     type: String,
     required: true,

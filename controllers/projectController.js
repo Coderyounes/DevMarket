@@ -13,6 +13,7 @@ const createProject = async (req, res) => {
       price,
       delay,
       employer,
+      status: 'Open',
     };
     const newproject = new Project(data);
     newproject.save();
@@ -56,8 +57,10 @@ const deleteProject = async (req, res) => {
   }
 };
 
-// const apply = async (req, res) => {};  this is for Freelancers
-// const applyCancel = async (req, res) => {}; this for Freelancers
+// TODO: const apply = async (req, res) => {};  this is for Freelancers if staus Open if Closed prevent
+// TODO: const applyCancel = async (req, res) => {}; this for Freelancers if it from the applting cancel his appilcation
+// TODO: Create, update, Delete Services
+// TODO: read, Create , Update, Delete Contract  ( managed using Contract status)
 module.exports = {
   createProject, updateProject, deleteProject,
 };
