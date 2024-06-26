@@ -1,5 +1,6 @@
 const freelance = require('../models/freelance');
 const Project = require('../models/projects');
+const Service = require('../models/services');
 require('dotenv').config({ path: './utils/.env' });
 
 const discret = process.env.DISCRET;
@@ -55,15 +56,38 @@ const allProjects = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const projects = await Project.find().select(discret).skip(skip).limit(limit);
-    res.status(200).send(projects);
+    return res.status(200).send(projects);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+const readService = async (req, res) => {
+  try {
+    const service = await Service.findById(req.params.id);
+    if (!service) {
+      return res.status(404).send('Service Not Found');
+    }
+
+    return res.status(200).json(service);
   } catch (error) {
     return res.status(500).send('Internal Server Error');
   }
 };
 
-// const readService = async (req, res) => {};
-// const allServices = async (req, res) => {}; // Pagination needed
+const allServices = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = 10;
+
+    const skip = (page - 1) * limit;
+
+    const service = await Service.find().select(discret).skip(skip).limit(limit);
+    return res.status(200).send(service);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
 
 module.exports = {
-  getProfile, allProfiles, readProject, allProjects,
+  getProfile, allProfiles, readProject, allProjects, readService, allServices,
 };
