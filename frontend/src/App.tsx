@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Employer from "./pages/Employer";
 import Freelancer from "./pages/Freelancer";
@@ -10,13 +10,13 @@ import MainLayout from "./components/MainLayout";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Error404 from "./pages/Error404";
+import Faq from "./pages/Faq";
 
 function App() {
   return (
       <Routes>
       <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
-
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="employer" element={<Employer />} />
         <Route path="freelancer" element={<Freelancer />} />
@@ -26,8 +26,8 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="contactus" element={<ContactUs />} />
         <Route path="aboutus" element={<AboutUs />} />
+        <Route path="faq" element={<Faq />} />
         <Route path="*" element={<Error404 />} />
-
       </Route>
       </Routes>
   );
