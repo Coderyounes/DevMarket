@@ -1,4 +1,3 @@
-const { default: mongoose } = require('mongoose');
 const Project = require('../models/projects');
 const Employer = require('../models/employer');
 

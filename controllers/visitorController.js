@@ -47,9 +47,23 @@ const readProject = async (req, res) => {
   }
 };
 
-// const readService = async (req, res) => {};
+const allProjects = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = 10;
 
-// const allProjects = async (req, res) => {}; // pagination needed
+    const skip = (page - 1) * limit;
+
+    const projects = await Project.find().select(discret).skip(skip).limit(limit);
+    res.status(200).send(projects);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
+// const readService = async (req, res) => {};
 // const allServices = async (req, res) => {}; // Pagination needed
 
-module.exports = { getProfile, allProfiles, readProject };
+module.exports = {
+  getProfile, allProfiles, readProject, allProjects,
+};

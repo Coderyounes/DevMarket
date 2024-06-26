@@ -38,5 +38,6 @@ router.delete('/employer/deleteProject/:id', checkIdValidity, authenticate, chec
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
+router.get('/allProjects', visitorController.allProjects);
 
 module.exports = router;
