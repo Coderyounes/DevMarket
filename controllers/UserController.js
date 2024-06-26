@@ -6,16 +6,27 @@ require('../config/firebase-config');
 
 const signUp = async (req, res) => {
   const {
-    email, password, usertype, firstname, lastname, country, address, city, age, skills, photo
+    email, password, usertype, firstname, lastname, country, address, city, age, skills, photo,
   } = req.body;
+
+  const requiredFields = ['email', 'password', 'usertype', 'firstname', 'lastname', 'country', 'age'];
+
+  for (const field of requiredFields) {
+    if (!req.body[field]) {
+      return res.status(400).json({ error: `Missing required field: ${field}` });
+    }
+  }
+
   if (usertype !== 'freelance' && usertype !== 'employer') {
     return res.status(400).json({ error: 'Undefined usertype' });
   }
+
   try {
     const userRecord = await admin.auth().createUser({
       email,
       password,
     });
+
     const userData = {
       firstname,
       lastname,
@@ -27,10 +38,12 @@ const signUp = async (req, res) => {
       skills,
       photo,
       usertype,
+      firebaseUID: userRecord.uid,
     };
-    console.log(userData);
+
     const UserModel = getModelByUserType(usertype);
     const newUser = new UserModel(userData);
+
     await newUser.save();
 
     return res.status(201).json({ message: `User created: ${userRecord.uid}` });

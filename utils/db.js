@@ -11,6 +11,7 @@ class DBClient {
       throw new Error('MONGODB_URI not found in environment variables');
     }
     this.uri = uri;
+    this.status = false;
   }
 
   async connect() {
@@ -20,10 +21,15 @@ class DBClient {
         useUnifiedTopology: true,
       });
       console.log('Connected to MongoDB');
+      this.status = true;
     } catch (err) {
       console.error('Failed to connect to MongoDB', err);
       throw err;
     }
+  }
+
+  async isAlive() {
+    return this.status;
   }
 }
 
