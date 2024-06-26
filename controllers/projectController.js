@@ -57,10 +57,6 @@ const deleteProject = async (req, res) => {
   }
 };
 
-// TODO: const apply = async (req, res) => {};  this is for Freelancers if staus Open if Closed prevent
-// TODO: const applyCancel = async (req, res) => {}; this for Freelancers if it from the applting cancel his appilcation
-// TODO: Create, update, Delete Services
-// TODO: read, Create , Update, Delete Contract  ( managed using Contract status)
 module.exports = {
   createProject, updateProject, deleteProject,
 };

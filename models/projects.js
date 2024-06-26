@@ -20,7 +20,7 @@ const projectSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'Open',
-    enum: ['Open', 'Closed'],
+    enum: ['Open', 'Closed', 'talks'],
   },
   delay: {
     type: String,
