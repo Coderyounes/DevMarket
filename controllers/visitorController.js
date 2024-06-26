@@ -1,5 +1,5 @@
-const { default: mongoose } = require('mongoose');
 const freelance = require('../models/freelance');
+const Project = require('../models/projects');
 require('dotenv').config({ path: './utils/.env' });
 
 const discret = process.env.DISCRET;
@@ -7,10 +7,6 @@ const discret = process.env.DISCRET;
 // eslint-disable-next-line consistent-return
 const getProfile = async (req, res) => {
   const { id } = req.params;
-  const status = mongoose.Types.ObjectId.isValid(id);
-  if (!status) {
-    return res.status(403).json('Wrong ID');
-  }
   try {
     const user = await freelance.findOne({ _id: id }).select(discret);
     if (!user) {
@@ -36,7 +32,24 @@ const allProfiles = async (req, res) => {
   }
 };
 
-// TODO: Build a Controller to list all Services Pagination needed
-// TODO: Build a COntroller to list  all Project Pagination needed
+// front end , fetchallproject using allproject & craft url/id
+// eslint-disable-next-line consistent-return
+const readProject = async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).send('Project Not Found');
+    }
 
-module.exports = { getProfile, allProfiles };
+    res.status(200).json(project);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
+// const readService = async (req, res) => {};
+
+// const allProjects = async (req, res) => {}; // pagination needed
+// const allServices = async (req, res) => {}; // Pagination needed
+
+module.exports = { getProfile, allProfiles, readProject };

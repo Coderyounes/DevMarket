@@ -27,10 +27,8 @@ const projectSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'jobapplications',
   }],
-  createdAT: {
-    type: Date,
-    default: Date.now,
-  },
+}, {
+  timestamps: true,
 });
 
 const project = mongoose.model('projects', projectSchema);

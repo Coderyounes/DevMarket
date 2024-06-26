@@ -3,6 +3,8 @@ const userController = require('../controllers/UserController');
 const freelanceController = require('../controllers/freelanceController');
 const visitorController = require('../controllers/visitorController');
 const employerController = require('../controllers/EmployerController');
+const projectController = require('../controllers/projectController');
+const checkIdValidity = require('../middleware/CheckIdValidity');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -23,12 +25,18 @@ router.post('/sendverification'); // Later
 router.get('/freelance/userProfile', authenticate, checkFreelancer, freelanceController.userProfile);
 router.put('/freelance//updateProfile', authenticate, checkFreelancer, freelanceController.updateProfile);
 router.delete('/freelance//deleteProfile', authenticate, checkFreelancer, freelanceController.deleteProfile);
+
 // Employer routes
 router.get('/employer/Profile', authenticate, checkEmployer, employerController.employerProfile);
 router.put('/employer/updateProfile', authenticate, checkEmployer, employerController.updateProfile);
 router.delete('/employer/deleteProfile', authenticate, checkEmployer, employerController.deleteProfile);
+router.post('/employer/createProject', authenticate, checkEmployer, projectController.createProject);
+router.put('/employer/updateProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.updateProject);
+router.delete('/employer/deleteProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.deleteProject);
+
 // unauth user routes
-router.get('/getProfile/:id', visitorController.getProfile);
+router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
+router.get('/project/:id', checkIdValidity, visitorController.readProject);
 
 module.exports = router;
