@@ -22,7 +22,11 @@ const sendProposal = async (req, res) => {
     const newProposal = new Proposal(data);
     newProposal.save();
     const update = {
-      $push: { applications: newProposal._id.toString() },
+      $push: {
+        applications: newProposal,
+        letter,
+        cv,
+      },
     };
 
     const project = await Project.findOneAndUpdate(

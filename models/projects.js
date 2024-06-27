@@ -29,8 +29,18 @@ const projectSchema = new mongoose.Schema({
   employer: { type: mongoose.Schema.Types.ObjectId, ref: 'employers' },
   freelance: { type: mongoose.Schema.Types.ObjectId, ref: 'freelances', default: null },
   applications: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'jobapplications',
+    applicationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'jobapplications',
+    },
+    letter: {
+      type: String,
+      required: true,
+    },
+    cv: {
+      type: mongoose.Schema.Types.Mixed,
+      required: true,
+    },
   }],
 }, {
   timestamps: true,
