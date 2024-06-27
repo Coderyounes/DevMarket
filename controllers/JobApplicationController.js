@@ -44,11 +44,27 @@ const sendProposal = async (req, res) => {
   }
 };
 
-module.exports = { sendProposal };
+const proposalCancel = async (req, res) => {
+  try {
+    await Proposal.findByIdAndDelete({ _id: req.params.id });
+    await Project.updateOne(
+      {},
+      { $pull: { applications: { _id: req.params.id } } },
+      { multi: true },
+    );
+    return res.status(200).send({ message: 'Proposal deleted' });
+  } catch (error) {
+    return res.status(500).send('Iternal Server Error');
+  }
+};
 
-/* const proposalCancel = async (req, res) => {};
 const listProposals = async (req, res) => {};
-const OneProposal = async (req, res) => {}; */
+const OneProposal = async (req, res) => {};
+
+module.exports = {
+  sendProposal, proposalCancel,
+};
+
 
 // Employers Controller
 // const readallproposal = async()

@@ -34,6 +34,7 @@ router.put('/freelance/updateService/:id', checkIdValidity, authenticate, checkF
 router.delete('/freelance/deleteService/:id', checkIdValidity, authenticate, checkFreelancer, serviceController.deleteService);
 // Job application routes (Freelance)
 router.post('/sendProposal/:id', checkIdValidity, upload.single('cv'), authenticate, checkFreelancer, jobproposal.sendProposal);
+router.delete('/cancelProposal/:id', checkIdValidity, authenticate, checkFreelancer, jobproposal.proposalCancel);
 // Employer routes
 router.get('/employer/Profile', authenticate, checkEmployer, employerController.employerProfile);
 router.put('/employer/updateProfile', authenticate, checkEmployer, employerController.updateProfile);
