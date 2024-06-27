@@ -7,6 +7,7 @@ const projectController = require('../controllers/projectController');
 const serviceController = require('../controllers/serviceController');
 const checkIdValidity = require('../middleware/CheckIdValidity');
 const upload = require('../middleware/uploadMiddleware');
+const jobproposal = require('../controllers/JobApplicationController');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -27,10 +28,12 @@ router.post('/sendverification'); // Later
 router.get('/freelance/userProfile', authenticate, checkFreelancer, freelanceController.userProfile);
 router.put('/freelance//updateProfile', authenticate, checkFreelancer, freelanceController.updateProfile);
 router.delete('/freelance//deleteProfile', authenticate, checkFreelancer, freelanceController.deleteProfile);
+// Services routes
 router.post('/freelance/createService', authenticate, upload.array('images'), checkFreelancer, serviceController.createService);
 router.put('/freelance/updateService/:id', checkIdValidity, authenticate, checkFreelancer, serviceController.updateService);
 router.delete('/freelance/deleteService/:id', checkIdValidity, authenticate, checkFreelancer, serviceController.deleteService);
-
+// Job application routes (Freelance)
+router.post('/sendProposal/:id', checkIdValidity, upload.single('cv'), authenticate, checkFreelancer, jobproposal.sendProposal);
 // Employer routes
 router.get('/employer/Profile', authenticate, checkEmployer, employerController.employerProfile);
 router.put('/employer/updateProfile', authenticate, checkEmployer, employerController.updateProfile);
