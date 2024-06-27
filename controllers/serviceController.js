@@ -1,38 +1,34 @@
-const multer = require('multer');
 const Service = require('../models/services');
 const Freelance = require('../models/freelance');
 
-const upload = multer({ dest: 'uploads/' });
-
 const createService = async (req, res) => {
-  upload.array('images')(req, res, async (err) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).json({ error: 'No files uploaded' });
+  }
 
-    const {
-      title, description, price, tags,
-    } = req.body;
+  const {
+    title, description, price, tags,
+  } = req.body;
+
+  try {
     const freelance = await Freelance.findOne({ firebaseUID: req.user.uid });
     const images = req.files.map((file) => file.path);
 
-    try {
-      const data = {
-        title,
-        description,
-        price,
-        tags,
-        images,
-        freelance,
-      };
+    const data = {
+      title,
+      description,
+      price,
+      tags,
+      images,
+      freelance,
+    };
 
-      const newService = new Service(data);
-      await newService.save();
-      return res.status(201).send(newService);
-    } catch (error) {
-      return res.status(500).send('internal Server Error');
-    }
-  });
+    const newService = new Service(data);
+    await newService.save();
+    return res.status(201).send(newService);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
 };
 
 const updateService = async (req, res) => {
