@@ -7,28 +7,27 @@ const serviceSchema = new mongoose.Schema({
     min: 10,
     max: 100,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
     min: 200,
     max: 1000,
   },
-  Price: {
+  price: {
     type: Number,
     required: true,
   },
-  Images: {
+  images: {
     type: Buffer,
     required: true,
   },
-  Tags: {
+  tags: {
     type: String,
     required: true,
   },
-  createdAT: {
-    type: Date,
-    default: Date.now,
-  },
+  freelance: { type: mongoose.Schema.Types.ObjectId, ref: 'freelances' },
+}, {
+  timestamps: true,
 });
 
 const service = mongoose.model('Service', serviceSchema);
