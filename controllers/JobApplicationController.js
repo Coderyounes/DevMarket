@@ -87,7 +87,7 @@ const readallproposal = async (req, res) => {
     const proposals = project.applications;
     return res.status(200).json(proposals);
   } catch (error) {
-    return res.statsu(500).send('Internal Server Error');
+    return res.status(500).send('Internal Server Error');
   }
 };
 
