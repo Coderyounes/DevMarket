@@ -101,8 +101,41 @@ const readoneproposal = async (req, res) => {
   }
 };
 
-// const rejectProposal = async (req, res) => {}; // -> job status applicant updated
-// const acceptProposal = async (req, res) => {}; // -> update project status / job status updated
+const rejectProposal = async (req, res) => {
+  const proposalid = req.params.id;
+
+  try {
+    await Proposal.findByIdAndUpdate(
+      { _id: proposalid },
+      { status: 'rejected' },
+    );
+    await Project.updateOne(
+      {},
+      { $pull: { applications: { _id: proposalid } } },
+      { multi: true },
+    );
+    return res.status(200).send('Proposal has Been Rejected');
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
+const acceptProposal = async (req, res) => {
+  const proposalid = req.params.id;
+  try {
+    const proposal = await Proposal.findByIdAndUpdate(
+      { _id: proposalid },
+      { status: 'accepted' },
+    );
+    await Project.findByIdAndUpdate(
+      proposal.projectid,
+      { status: 'in talks' },
+    );
+    return res.status(200).send('Proposal Accepted');
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
 
 module.exports = {
   sendProposal,
@@ -111,6 +144,8 @@ module.exports = {
   oneProposal,
   readallproposal,
   readoneproposal,
+  rejectProposal,
+  acceptProposal,
 };
 
 /*
