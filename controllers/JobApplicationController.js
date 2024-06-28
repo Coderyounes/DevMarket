@@ -83,20 +83,34 @@ const readallproposal = async (req, res) => {
   const projectid = req.params.id;
 
   try {
-    const proposals = await Proposal.find({ projectid });
+    const project = await Project.findById(projectid);
+    const proposals = project.applications;
     return res.status(200).json(proposals);
   } catch (error) {
     return res.statsu(500).send('Internal Server Error');
   }
 };
 
-// const rejectProposal = async() -> job status applicant updated
-// const acceptProposal = async()  -> update project status / job status updated
+const readoneproposal = async (req, res) => {
+  const ProposalID = req.params.id;
+  try {
+    const proposal = await Proposal.findById({ _id: ProposalID });
+    return res.status(200).json(proposal);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
 
-// const readoneproposal = async (req, res) => {}; // read one Proposal
+// const rejectProposal = async (req, res) => {}; // -> job status applicant updated
+// const acceptProposal = async (req, res) => {}; // -> update project status / job status updated
 
 module.exports = {
-  sendProposal, proposalCancel, myProposals, oneProposal, readallproposal,
+  sendProposal,
+  proposalCancel,
+  myProposals,
+  oneProposal,
+  readallproposal,
+  readoneproposal,
 };
 
 /*
