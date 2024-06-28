@@ -44,7 +44,7 @@ router.delete('/employer/deleteProfile', authenticate, checkEmployer, employerCo
 router.post('/employer/createProject', authenticate, checkEmployer, projectController.createProject);
 router.put('/employer/updateProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.updateProject);
 router.delete('/employer/deleteProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.deleteProject);
-
+router.get('/allProposals/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.readallproposal);
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);

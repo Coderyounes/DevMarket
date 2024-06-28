@@ -20,6 +20,10 @@ const jobappSchema = new mongoose.Schema({
     enum: ['pending', 'rejected', 'accepted'],
     default: 'pending',
   },
+  projectid: {
+    type: String,
+    required: true,
+  },
 }, {
   timestamps: true,
 });

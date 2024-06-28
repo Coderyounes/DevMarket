@@ -17,7 +17,7 @@ const sendProposal = async (req, res) => {
       cv,
       freelancerid: freelance.firebaseUID,
       status: 'pending',
-      project: req.params.id,
+      projectid: req.params.id,
     };
     const newProposal = new Proposal(data);
     newProposal.save();
@@ -78,15 +78,26 @@ const oneProposal = async (req, res) => {
   }
 };
 
-module.exports = {
-  sendProposal, proposalCancel, myProposals, oneProposal,
+// Employers Controller
+const readallproposal = async (req, res) => {
+  const projectid = req.params.id;
+
+  try {
+    const proposals = await Proposal.find({ projectid });
+    return res.status(200).json(proposals);
+  } catch (error) {
+    return res.statsu(500).send('Internal Server Error');
+  }
 };
 
-// Employers Controller
-// const readallproposal = async()
-// const readoneproposal = async ()
 // const rejectProposal = async() -> job status applicant updated
 // const acceptProposal = async()  -> update project status / job status updated
+
+// const readoneproposal = async (req, res) => {}; // read one Proposal
+
+module.exports = {
+  sendProposal, proposalCancel, myProposals, oneProposal, readallproposal,
+};
 
 /*
     freelance send proposal
