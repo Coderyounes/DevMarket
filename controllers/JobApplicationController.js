@@ -1,6 +1,5 @@
 const Proposal = require('../models/jobapplication');
 const Freelance = require('../models/freelance');
-const Employer = require('../models/employer');
 const Project = require('../models/projects');
 // proposal, need to check the Project status before if it closed so show message say it closed
 // Freelance Controllers
@@ -147,12 +146,3 @@ module.exports = {
   rejectProposal,
   acceptProposal,
 };
-
-/*
-    freelance send proposal
-    proposal added jo project model ( jobappilcations)
-    freelance job status update to pending
-    employer receive the job proposal
-    reject it  -> update the job status
-    accept it -> job status
-*/
