@@ -58,13 +58,29 @@ const proposalCancel = async (req, res) => {
   }
 };
 
-const listProposals = async (req, res) => {};
-const OneProposal = async (req, res) => {};
-
-module.exports = {
-  sendProposal, proposalCancel,
+const myProposals = async (req, res) => {
+  try {
+    const freelanceId = req.user.id;
+    const proposals = await Proposal.find({ freelanceId });
+    return res.status(200).json(proposals);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
 };
 
+const oneProposal = async (req, res) => {
+  const propsalId = req.params.id;
+  try {
+    const proposal = await Proposal.findById({ _id: propsalId });
+    return res.status(200).json(proposal);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
+module.exports = {
+  sendProposal, proposalCancel, myProposals, oneProposal,
+};
 
 // Employers Controller
 // const readallproposal = async()
