@@ -49,6 +49,10 @@ const contractSchema = new mongoose.Schema({
   freelancerId: {
     type: String,
   },
+  isDelivered: {
+    type: Boolean,
+    default: false,
+  },
 }, {
   timestamps: true,
 });

@@ -78,9 +78,31 @@ const deleteContract = async (req, res) => {
   }
 };
 
-module.exports = {
-  createContract, updateContract, readContract, deleteContract,
+// Re enforce this to check freelanceId before accpt
+const acceptContract = async (req, res) => {
+  const contractId = req.params.id;
+  const freelanceId = req.user.uid;
+  try {
+    const contract = await Contract.findById({ _id: contractId });
+    await Contract.findByIdAndUpdate(
+      { _id: contractId },
+      { status: 'ongoing', freelancerId: freelanceId },
+      { new: true },
+    );
+    await Project.findByIdAndUpdate(
+      { _id: contract.projectId },
+      { status: 'Closed', freelance: freelanceId },
+    );
+    return res.status(200).send('Contract Accepted');
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
 };
 
-// TODO: Deliver the work
-// TODO: Accept the Delivery
+module.exports = {
+  createContract, updateContract, readContract, deleteContract, acceptContract,
+};
+// TODO: Accept Contract - Hold payment fr
+// project Closed, contract onGoing, freelance ID link with contract
+// TODO: Deliver the work()
+// TODO: Accept the Delivery(project: finish, contract: finish , payments sent)
