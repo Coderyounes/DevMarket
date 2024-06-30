@@ -9,6 +9,7 @@ const checkIdValidity = require('../middleware/CheckIdValidity');
 const upload = require('../middleware/uploadMiddleware');
 const jobproposal = require('../controllers/JobApplicationController');
 const ContractController = require('../controllers/ContractController');
+const MessageController = require('../controllers/MessageController');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -64,4 +65,7 @@ router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
 router.get('/allProjects', visitorController.allProjects);
 
+// messages
+router.post('/messages', MessageController.sendMessage);
+router.get('/messages/:chatId', MessageController.getMessages);
 module.exports = router;
