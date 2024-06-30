@@ -54,7 +54,8 @@ router.post('/acceptProposal/:id', checkIdValidity, authenticate, checkEmployer,
 // Contract Management routes
 router.post('/contracts/:id', checkIdValidity, authenticate, checkEmployer, ContractController.createContract);
 router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.updateContract);
-router.get('/readContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.readContract);
+router.delete('/deleteContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.deleteContract);
+router.get('/readContract/:id', checkIdValidity, authenticate, ContractController.readContract); // Employer and Freelance can read Contract
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);

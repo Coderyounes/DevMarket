@@ -58,17 +58,29 @@ const updateContract = async (req, res) => {
 const readContract = async (req, res) => {
   try {
     const contract = await Contract.findById({ _id: req.params.id });
-    return res.status(200).json(contract)
+    return res.status(200).json(contract);
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
+};
+
+const deleteContract = async (req, res) => {
+  const contractId = req.params.id;
+  try {
+    const contract = await Contract.findById({ _id: contractId });
+    if (contract.status === 'ongoing') {
+      return res.status(403).send('Forbbiden Action');
+    }
+    await Contract.findByIdAndDelete({ _id: contractId });
+    return res.status(200).send('Contract Deleted');
   } catch (error) {
     return res.status(500).send('Internal Server Error');
   }
 };
 
 module.exports = {
-  createContract, updateContract, readContract,
+  createContract, updateContract, readContract, deleteContract,
 };
 
-// TODO: read Contract
-// TODO: Delete Contract
 // TODO: Deliver the work
 // TODO: Accept the Delivery
