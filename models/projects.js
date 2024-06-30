@@ -20,14 +20,14 @@ const projectSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'Open',
-    enum: ['Open', 'Closed', 'talks'],
+    enum: ['Open', 'Closed', 'talks', 'finish'],
   },
   delay: {
     type: String,
     required: true,
   },
   employer: { type: mongoose.Schema.Types.ObjectId, ref: 'employers' },
-  freelance: { type: mongoose.Schema.Types.ObjectId, ref: 'freelances', default: null },
+  freelance: { type: String, default: null },
   applications: [{
     applicationId: {
       type: mongoose.Schema.Types.ObjectId,

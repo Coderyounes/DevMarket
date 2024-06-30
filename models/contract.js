@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { calculateEndDate } = require('../middleware/ContractMiddleware');
 
 const contractSchema = new mongoose.Schema({
   job: {
@@ -29,7 +28,7 @@ const contractSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'canceled', 'ongoing', 'rejected'],
+    enum: ['pending', 'canceled', 'ongoing', 'rejected', 'finish'],
     default: 'pending',
   },
   startAT: {
@@ -56,8 +55,6 @@ const contractSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
-
-contractSchema.pre('save', calculateEndDate);
 
 const contract = mongoose.model('contracts', contractSchema);
 

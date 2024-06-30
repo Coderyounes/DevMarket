@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Employer = require('../models/employer');
 const Freelance = require('../models/freelance');
 const Contract = require('../models/contract');
@@ -89,19 +90,56 @@ const acceptContract = async (req, res) => {
       { status: 'ongoing', freelancerId: freelanceId },
       { new: true },
     );
+    contract.startAT = new Date();
+    contract.endAT = new Date(contract.startAT.getTime() + 30 * 24 * 60 * 60 * 1000);// calculation not Correct
+    contract.save();
     await Project.findByIdAndUpdate(
       { _id: contract.projectId },
       { status: 'Closed', freelance: freelanceId },
     );
     return res.status(200).send('Contract Accepted');
   } catch (error) {
+    console.log(error);
     return res.status(500).send('Internal Server Error');
   }
 };
 
-const rejectContract = async (req, res) => {};
-const deliverWork = async (req, res) => {};
-const acceptWord = async (req, res) => {};
+const deliverWork = async (req, res) => {
+  try {
+    const contractId = req.params.id;
+    const contract = await Contract.findById(contractId);
+
+    if (!contract) {
+      return res.status(404).json({ message: 'Contract not found' });
+    }
+    contract.isDelivered = true;
+
+    await contract.save();
+
+    return res.status(200).json('Deliver');
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const acceptWork = async (req, res) => {
+  const contractId = req.params.id;
+  try {
+    const contract = await Contract.findById(contractId);
+    if (!contract) {
+      return res.status(404).send('No Contract found !');
+    }
+    contract.status = 'finish';
+    const project = await Project.findById(contract.projectId);
+    project.status = 'finish';
+    contract.save();
+    project.save();
+    return res.status(200).send('Work Accepted !');
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send('Internal Server Error');
+  }
+};
 
 module.exports = {
   createContract,
@@ -109,6 +147,8 @@ module.exports = {
   readContract,
   deleteContract,
   acceptContract,
+  deliverWork,
+  acceptWork,
 };
 // TODO: Accept Contract - Hold payment fr
 // project Closed, contract onGoing, freelance ID link with contract

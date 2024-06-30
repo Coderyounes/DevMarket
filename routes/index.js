@@ -57,6 +57,8 @@ router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, 
 router.delete('/deleteContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.deleteContract);
 router.get('/readContract/:id', checkIdValidity, authenticate, ContractController.readContract); // Employer and Freelance can read Contract
 router.patch('/acceptContract/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.acceptContract);
+router.patch('/deliver/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.deliverWork);
+router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, ContractController.acceptWork);
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
