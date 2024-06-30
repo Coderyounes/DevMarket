@@ -22,8 +22,7 @@ router.get('/', (req, res) => {
 router.post('/signup', userController.signUp);
 router.post('/login', userController.login);
 router.post('/logout', authenticate, userController.signOut);
-router.post('/resetpassword'); // Later
-router.post('/sendverification'); // Later
+router.post('/resetpassword', userController.sendPasswordReset);
 
 // Freelance routes
 router.get('/freelance/userProfile', authenticate, checkFreelancer, freelanceController.userProfile);

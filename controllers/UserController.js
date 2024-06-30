@@ -1,4 +1,5 @@
-const { getAuth, signInWithEmailAndPassword } = require('firebase/auth');
+const firebase = require('firebase/app');
+const { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } = require('firebase/auth');
 const admin = require('../config/firebase-admin-config');
 const getModelByUserType = require('../utils/getModelByUserType');
 require('dotenv').config({ path: './utils/.env' });
@@ -26,7 +27,6 @@ const signUp = async (req, res) => {
       email,
       password,
     });
-
     const userData = {
       firstname,
       lastname,
@@ -79,4 +79,20 @@ const signOut = async (req, res) => {
   }
 };
 
-module.exports = { signUp, login, signOut };
+const sendPasswordReset = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const auth = getAuth();
+    await sendPasswordResetEmail(auth, email);
+    res.status(200).json({ message: 'Password reset email sent' });
+  } catch (err) {
+    console.error('Password reset error', err);
+    res.status(500).json({ error: 'Failed to send password reset email' });
+  }
+};
+
+module.exports = {
+  signUp, login, signOut, sendPasswordReset,
+
+};
