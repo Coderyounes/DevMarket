@@ -8,6 +8,7 @@ const serviceController = require('../controllers/serviceController');
 const checkIdValidity = require('../middleware/CheckIdValidity');
 const upload = require('../middleware/uploadMiddleware');
 const jobproposal = require('../controllers/JobApplicationController');
+const ContractController = require('../controllers/ContractController');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -41,13 +42,18 @@ router.get('/myProposal/:id', checkIdValidity, authenticate, checkFreelancer, jo
 router.get('/employer/Profile', authenticate, checkEmployer, employerController.employerProfile);
 router.put('/employer/updateProfile', authenticate, checkEmployer, employerController.updateProfile);
 router.delete('/employer/deleteProfile', authenticate, checkEmployer, employerController.deleteProfile);
+// Project routes
 router.post('/employer/createProject', authenticate, checkEmployer, projectController.createProject);
 router.put('/employer/updateProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.updateProject);
 router.delete('/employer/deleteProject/:id', checkIdValidity, authenticate, checkEmployer, projectController.deleteProject);
+// Proposal Management routes
 router.get('/allProposals/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.readallproposal);
 router.get('/expandProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.readoneproposal);
 router.post('/rejectProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.rejectProposal);
 router.post('/acceptProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.acceptProposal);
+// Contract Management routes
+router.post('/contracts/:id', checkIdValidity, authenticate, checkEmployer, ContractController.createContract);
+router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.updateContract);
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
