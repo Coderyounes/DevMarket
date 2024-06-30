@@ -8,18 +8,24 @@ const jobappSchema = new mongoose.Schema({
     max: 4000,
   },
   cv: {
-    type: Buffer,
+    type: mongoose.Schema.Types.Mixed,
     required: true,
   },
   freelancerid: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'freelancers',
+    type: String,
     required: true,
   },
-  createdAT: {
-    type: Date,
-    default: Date.now,
+  status: {
+    type: String,
+    enum: ['pending', 'rejected', 'accepted'],
+    default: 'pending',
   },
+  projectid: {
+    type: String,
+    required: true,
+  },
+}, {
+  timestamps: true,
 });
 
 const jobApp = mongoose.model('jobapplications', jobappSchema);
