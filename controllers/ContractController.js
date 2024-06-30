@@ -99,8 +99,16 @@ const acceptContract = async (req, res) => {
   }
 };
 
+const rejectContract = async (req, res) => {};
+const deliverWork = async (req, res) => {};
+const acceptWord = async (req, res) => {};
+
 module.exports = {
-  createContract, updateContract, readContract, deleteContract, acceptContract,
+  createContract,
+  updateContract,
+  readContract,
+  deleteContract,
+  acceptContract,
 };
 // TODO: Accept Contract - Hold payment fr
 // project Closed, contract onGoing, freelance ID link with contract
