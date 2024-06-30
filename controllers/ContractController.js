@@ -55,12 +55,19 @@ const updateContract = async (req, res) => {
   }
 };
 
-module.exports = {
-  createContract, updateContract,
+const readContract = async (req, res) => {
+  try {
+    const contract = await Contract.findById({ _id: req.params.id });
+    return res.status(200).json(contract)
+  } catch (error) {
+    return res.status(500).send('Internal Server Error');
+  }
 };
 
-// TODO: create COntract
-// TODO: Update Contract
+module.exports = {
+  createContract, updateContract, readContract,
+};
+
 // TODO: read Contract
 // TODO: Delete Contract
 // TODO: Deliver the work
