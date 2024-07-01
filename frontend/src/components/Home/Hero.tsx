@@ -1,4 +1,4 @@
-import work_illustration from "../res/undraw_working_re_ddwy.svg";
+import work_illustration from "../../res/undraw_working_re_ddwy.svg";
 
 export default function Hero() {
   return (

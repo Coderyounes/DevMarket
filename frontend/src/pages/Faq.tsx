@@ -1,145 +1,70 @@
 export default function Faq() {
   return (
-    <section className="bg-white ">
-      <div className="container max-w-4xl px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl ">
-          Frequently asked questions
-        </h1>
+    <section className="py-10 bg-white sm:py-16 lg:py-24">
+      <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+          Frequently Asked Questions
+        </h2>
 
-        <div className="mt-12 space-y-8">
-          <div className="border-2 border-gray-100 rounded-lg ">
-            <button className="flex items-center justify-between w-full p-8">
-              <h1 className="font-semibold text-gray-700 ">
-                How i can play for my appoinment ?
-              </h1>
+        <div className="flow-root mt-12 sm:mt-16">
+          <div className="divide-y divide-gray--200 -my-9">
+            <div className="py-9">
+              <p className="text-xl font-semibold text-black">
+                How to create an account?
+              </p>
+              <p className="mt-3 text-base text-gray-600">
+                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+                amet sint. Velit officia consequat duis enim velit mollit.
+                Exercitation veniam consequat sunt nostrud amet.
+              </p>
+              <p className="mt-3 text-base text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
 
-              <span className="text-gray-400 bg-gray-200 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+            <div className="py-9">
+              <p className="text-xl font-semibold text-black">
+                What payment method do you support?
+              </p>
+              <p className="mt-3 text-base text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut
+                enim ad minim veniam.
+              </p>
+            </div>
+
+            <div className="py-9">
+              <p className="text-xl font-semibold text-black">
+                What payment method do you support?
+              </p>
+              <p className="mt-3 text-base text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+
+            <div className="py-9">
+              <p className="text-xl font-semibold text-black">
+                How do you provide support?
+              </p>
+              <p className="mt-3 text-base text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt{" "}
+                <a
+                  href="#"
+                  title=""
+                  className="text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M18 12H6"
-                  />
-                </svg>
-              </span>
-            </button>
-
-            <br className="border-gray-200 " />
-
-            <p className="p-8 text-sm text-gray-500 ">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
-              eaque nobis, fugit odit omnis fugiat deleniti animi ab maxime cum
-              laboriosam recusandae facere dolorum veniam quia pariatur
-              obcaecati illo ducimus?
-            </p>
-          </div>
-
-          <div className="border-2 border-gray-100 rounded-lg ">
-            <button className="flex items-center justify-between w-full p-8">
-              <h1 className="font-semibold text-gray-700 ">
-                Is the cost of the appoinment covered by private health
-                insurance?
-              </h1>
-
-              <span className="text-white bg-blue-500 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-
-          <div className="border-2 border-gray-100 rounded-lg ">
-            <button className="flex items-center justify-between w-full p-8">
-              <h1 className="font-semibold text-gray-700 ">
-                Do i need a referral?
-              </h1>
-
-              <span className="text-white bg-blue-500 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-
-          <div className="border-2 border-gray-100 rounded-lg ">
-            <button className="flex items-center justify-between w-full p-8">
-              <h1 className="font-semibold text-gray-700 ">
-                What are your opening house?
-              </h1>
-
-              <span className="text-white bg-blue-500 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-
-          <div className="border-2 border-gray-100 rounded-lg ">
-            <button className="flex items-center justify-between w-full p-8">
-              <h1 className="font-semibold text-gray-700 ">
-                What can i expect at my first consultation?
-              </h1>
-
-              <span className="text-white bg-blue-500 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-              </span>
-            </button>
+                  support@Celebration.com
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

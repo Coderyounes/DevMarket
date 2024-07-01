@@ -1,11 +1,15 @@
-import Hero from "../components/Hero";
-import ImageSlider from "../components/ImageSlider";
+import Hero from "../components/Home/Hero";
+import CategoriesSlider from "../components/Home/CategoriesSlider";
+import FreelancersSlider from "../components/Home/FreelancersSlider";
+import ServicesSample from "../components/Home/ServicesSample";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ImageSlider />
+      <CategoriesSlider />
+      <FreelancersSlider />
+      <ServicesSample title="programming" />
     </>
   );
 }
