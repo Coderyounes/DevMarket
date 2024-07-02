@@ -1,4 +1,4 @@
-import { ServiceCardType } from "../../utils/types";
+import { ServiceCardType } from "../../utils/constants/types";
 import { Link } from "react-router-dom";
 
 export default function MissionCard({ data }: { data: ServiceCardType }) {

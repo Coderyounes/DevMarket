@@ -1,5 +1,5 @@
 import { SERVICE_LIST } from "../utils/constant";
-import { ServiceCardType } from "../utils/types";
+import { ServiceCardType } from "../utils/constants/types";
 import MissionCard from "../components/Home/MissionCard";
 import { Link } from "react-router-dom";
 

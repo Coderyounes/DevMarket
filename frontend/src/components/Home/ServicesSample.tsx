@@ -1,5 +1,5 @@
 import ServiceCard from "./ServiceCard";
-import { ServiceCardType } from "../../utils/types";
+import { ServiceCardType } from "../../utils/constants/types";
 import { SERVICE_LIST } from "../../utils/constant";
 import { Link } from "react-router-dom";
 

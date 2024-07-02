@@ -1,4 +1,4 @@
-import { ServiceCardType } from "../../utils/types";
+import { ServiceCardType } from "../../utils/constants/types";
 import Stars from "../shared/Stars";
 import { Link } from "react-router-dom";
 

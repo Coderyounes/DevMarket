@@ -4,7 +4,7 @@ import { TRENDING_FREELANCER } from "../../utils/constant";
 import { FreelancerSettingsSlider } from "../../utils/constant";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FreelancerCardType } from "../../utils/types";
+import { FreelancerCardType } from "../../utils/constants/types";
 
 export default function FreelancersSlider() {
   return (
