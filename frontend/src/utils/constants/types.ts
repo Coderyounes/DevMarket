@@ -9,22 +9,22 @@ export type FreelancerCardType = {
 
 export type ServiceCardType = {
   id: number;
-  posted_at: Date;
-  title: string;
   owner: string;
+  title: string;
+  posted_at: Date;
   image?: string;
-  description: string;
   category: string;
-  rating?: number;
   price: number;
+  description: string;
+  rating?: number;
 };
 
 export type Profile = {
   id: number;
+  email: string;
+  account_type: "freelancer" | "employer";
   first_name: string;
   last_name: string;
   country: string;
   age: number;
-  email: string;
-  account_type: "freelancer" | "employer";
 };
