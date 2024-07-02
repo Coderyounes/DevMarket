@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Employer from "./pages/Employers";
-import Freelancer from "./pages/Freelancer";
+import Freelancer from "./pages/Freelancers";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import SignIn from "./pages/SignIn";
