@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import logo from "../../res/logo.png";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
@@ -8,7 +9,9 @@ export default function Navbar() {
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <Link to="/">DevMarket</Link>
+            <Link to="/">
+              <img src={logo} className="w-[200px]" />
+            </Link>
             <div className="flex lg:hidden">
               <button
                 type="button"

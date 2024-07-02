@@ -61,7 +61,7 @@ export default function Faq() {
                   title=""
                   className="text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
                 >
-                  support@Celebration.com
+                  support@devmarket.com
                 </a>
               </p>
             </div>
