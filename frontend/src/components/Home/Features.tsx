@@ -23,11 +23,11 @@ export default function Features() {
               </svg>
             </div>
             <h3 className="mt-8 text-lg font-semibold text-black">
-              Secured Payments
+              Profile Creation
             </h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
+              Allows freelancers to create and customize their profiles
+              showcasing skills, experience, and portfolio.
             </p>
           </div>
 
@@ -49,11 +49,11 @@ export default function Features() {
               </svg>
             </div>
             <h3 className="mt-8 text-lg font-semibold text-black">
-              Fast & Easy to Load
+              Job Listings
             </h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
+              Provides a platform for freelancers to browse and apply for
+              various job opportunities.
             </p>
           </div>
 
@@ -75,11 +75,11 @@ export default function Features() {
               </svg>
             </div>
             <h3 className="mt-8 text-lg font-semibold text-black">
-              Light & Dark Version
+              Messaging System
             </h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
+              Enables direct communication between freelancers and clients for
+              seamless collaboration.
             </p>
           </div>
 
@@ -101,11 +101,11 @@ export default function Features() {
               </svg>
             </div>
             <h3 className="mt-8 text-lg font-semibold text-black">
-              Filter Blocks
+              Payment Integration
             </h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
+              Secure payment gateways for handling transactions and tracking
+              earnings.
             </p>
           </div>
         </div>

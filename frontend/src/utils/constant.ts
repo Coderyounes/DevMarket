@@ -1,12 +1,12 @@
 import { FreelancerCardType, ServiceCardType } from "./types";
 
 export const CategorySettingsSlider = {
-  centerMode: true,
+  // centerMode: true,
   dots: true,
   infinite: true,
-  speed: 500,
+  speed: 450,
   autoplay: true,
-  slidesToShow: 8,
+  slidesToShow: 6,
   slidesToScroll: 2,
   responsive: [
     {
@@ -24,14 +24,14 @@ export const CategorySettingsSlider = {
     {
       breakpoint: 1500,
       settings: {
-        slidesToShow: 5,
+        slidesToShow: 4,
       },
     },
   ],
 };
 
 export const FreelancerSettingsSlider = {
-  centerMode: true,
+  // centerMode: true,
   infinite: true,
   speed: 600,
   autoplay: true,

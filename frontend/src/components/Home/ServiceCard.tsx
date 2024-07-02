@@ -2,7 +2,7 @@ import { ServiceCardType } from "../../utils/types";
 
 export default function ServiceCard({ data }: { data: ServiceCardType }) {
   return (
-    <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg ">
+    <div className="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg ">
       <img
         className="object-cover object-center w-full h-56"
         src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
