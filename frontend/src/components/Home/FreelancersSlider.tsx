@@ -16,9 +16,11 @@ export default function FreelancersSlider() {
 
         <div className="slider-container">
           <Slider {...FreelancerSettingsSlider}>
-            {TRENDING_FREELANCER.map((elem: FreelancerCardType, index) => {
-              return <FreelancerCard key={index} data={elem} />;
-            })}
+            {TRENDING_FREELANCER.slice(0, 4).map(
+              (elem: FreelancerCardType, index) => (
+                <FreelancerCard key={index} data={elem} />
+              )
+            )}
           </Slider>
         </div>
       </div>
