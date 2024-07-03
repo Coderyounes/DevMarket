@@ -138,14 +138,12 @@ export default function SignUp() {
             type="button"
             className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
           >
-            {" "}
-            Sign In{" "}
+            Sign In
           </button>
         </div>
       </form>
       <p className="mt-8 text-xs font-light text-center text-gray-400">
-        {" "}
-        Already have an account?{" "}
+        Already have an account?
         <Link
           to="/signin"
           className="font-medium text-blue-600  hover:underline"

@@ -32,7 +32,6 @@ export default function ServicesSample({ title }: { title: string }) {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -47,7 +46,6 @@ export default function ServicesSample({ title }: { title: string }) {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                {" "}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
