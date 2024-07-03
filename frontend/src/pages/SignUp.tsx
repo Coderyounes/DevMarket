@@ -1,19 +1,51 @@
 import { Link } from "react-router-dom";
 import { getNames } from "country-list";
+import { registrationSchema } from "../utils/schema/auth_schema";
+import { registrationSchemaType } from "../utils/schema/schema_types";
+
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useSWRMutation from "swr/mutation";
+import { BASE_URL } from "../utils/constants/config";
+import { postData } from "../utils/constants/api_caller";
+import toast, { Toaster } from "react-hot-toast";
+import { redirect } from "react-router-dom";
 
 export default function SignUp() {
   const countryList = getNames();
 
+  const { data: RegistrationResponse, trigger: startRegistering } =
+    useSWRMutation(`${BASE_URL}/auth/users/`, postData, {
+      revalidate: false,
+      onError: (err) => {
+        for (const elem in err) {
+          toast.error(err[elem], { id: "toaster" });
+        }
+      },
+    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<registrationSchemaType>({
+    resolver: zodResolver(registrationSchema),
+  });
+
+  const onSubmit: SubmitHandler<registrationSchemaType> = (data) => {
+    console.log(data, "start registering");
+    startRegistering(data);
+  };
+
+  if (RegistrationResponse) {
+    redirect("/signin");
+  }
+
   return (
     <div className="max-w-sm min-w-fit p-6 bg-white rounded-lg shadow-xl  mx-auto my-5 sm:my-14">
       <div className="flex justify-center mx-auto">
-        <img
-          className="w-auto h-7 sm:h-8"
-          src="https://merakiui.com/images/logo.svg"
-          alt=""
-        />
+        <h1 className="text-2xl font-semibold">Register</h1>
       </div>
-      <form className="mt-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
         <div className="mt-4">
           <div className="flex items-center justify-between">
             <label
@@ -23,10 +55,15 @@ export default function SignUp() {
               email
             </label>
           </div>
+          {errors.email && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.email?.message}
+            </p>
+          )}
           <input
-            name="email"
             type="email"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            {...register("email")}
           />
         </div>
 
@@ -39,8 +76,13 @@ export default function SignUp() {
               Password
             </label>
           </div>
+          {errors.password && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.password?.message}
+            </p>
+          )}
           <input
-            name="password"
+            {...register("password")}
             type="password"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -53,8 +95,13 @@ export default function SignUp() {
           >
             first name
           </label>
+          {errors.first_name && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.first_name?.message}
+            </p>
+          )}
           <input
-            name="first_name"
+            {...register("first_name")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -66,8 +113,13 @@ export default function SignUp() {
           >
             last name
           </label>
+          {errors.last_name && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.last_name?.message}
+            </p>
+          )}
           <input
-            name="last_name"
+            {...register("last_name")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -79,9 +131,13 @@ export default function SignUp() {
           >
             country
           </label>
-
+          {errors.country && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.country?.message}
+            </p>
+          )}
           <select
-            name="country"
+            {...register("country")}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           >
             <option value="">--Please choose an option--</option>
@@ -100,9 +156,13 @@ export default function SignUp() {
           >
             account type
           </label>
-
+          {errors.user_type && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.user_type?.message}
+            </p>
+          )}
           <select
-            name="user_type"
+            {...register("user_type")}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           >
             <option value="" className="py-2">
@@ -126,8 +186,13 @@ export default function SignUp() {
               date of birth
             </label>
           </div>
+          {errors.birth_date && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.birth_date?.message}
+            </p>
+          )}
           <input
-            name="birth"
+            {...register("birth_date")}
             type="date"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -135,7 +200,7 @@ export default function SignUp() {
 
         <div className="mt-6">
           <button
-            type="button"
+            type="submit"
             className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
           >
             Sign In

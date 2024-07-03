@@ -9,7 +9,7 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 
-export const MissionSchema = z.object({
+export const missionSchema = z.object({
   owner: z.string().min(5, "username is required").max(50),
   title: z
     .string()
