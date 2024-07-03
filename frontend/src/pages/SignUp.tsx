@@ -15,12 +15,10 @@ export default function SignUp() {
   const countryList = getNames();
 
   const { data: RegistrationResponse, trigger: startRegistering } =
-    useSWRMutation(`${BASE_URL}/auth/users/`, postData, {
+    useSWRMutation(`${BASE_URL}/auth/signup/`, postData, {
       revalidate: false,
       onError: (err) => {
-        for (const elem in err) {
-          toast.error(err[elem], { id: "toaster" });
-        }
+        toast.error(err, { id: "toaster" });
       },
     });
   const {
@@ -42,6 +40,7 @@ export default function SignUp() {
 
   return (
     <div className="max-w-sm min-w-fit p-6 bg-white rounded-lg shadow-xl  mx-auto my-5 sm:my-14">
+      <Toaster />
       <div className="flex justify-center mx-auto">
         <h1 className="text-2xl font-semibold">Register</h1>
       </div>
