@@ -1,6 +1,6 @@
 import ServiceCard from "./ServiceCard";
 import { ServiceCardType } from "../../utils/constants/types";
-import { SERVICE_LIST } from "../../utils/constant";
+import { SERVICE_LIST } from "../../utils/constants/constant";
 import { Link } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";

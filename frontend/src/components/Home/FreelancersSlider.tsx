@@ -1,7 +1,7 @@
 import Slider from "react-slick";
 import FreelancerCard from "./FreelancerCard";
-import { TRENDING_FREELANCER } from "../../utils/constant";
-import { FreelancerSettingsSlider } from "../../utils/constant";
+import { TRENDING_FREELANCER } from "../../utils/constants/constant";
+import { FreelancerSettingsSlider } from "../../utils/constants/constant";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FreelancerCardType } from "../../utils/constants/types";

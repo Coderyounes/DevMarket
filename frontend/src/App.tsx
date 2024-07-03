@@ -11,6 +11,8 @@ import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Error404 from "./pages/Error404";
 import Faq from "./pages/Faq";
+import MissionDetails from "./pages/MissionDetails";
+import FreelancerDetails from "./pages/FreelancerDetails";
 
 function App() {
   return (
@@ -26,6 +28,14 @@ function App() {
         <Route path="contactus" element={<ContactUs />} />
         <Route path="aboutus" element={<AboutUs />} />
         <Route path="faq" element={<Faq />} />
+        <Route
+          path="/mission_details/:mission_id"
+          element={<MissionDetails />}
+        />
+        <Route
+          path="/freelancer_details/:freelancer_id"
+          element={<FreelancerDetails />}
+        />
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>

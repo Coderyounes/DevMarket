@@ -1,6 +1,6 @@
-import { ALL_CATEGORIES } from "../../utils/constant";
+import { ALL_CATEGORIES } from "../../utils/constants/constant";
 import CategoryElem from "./CategoryElem";
-import { CategorySettingsSlider } from "../../utils/constant";
+import { CategorySettingsSlider } from "../../utils/constants/constant";
 
 import Slider from "react-slick";
 
