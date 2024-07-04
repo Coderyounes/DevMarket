@@ -84,36 +84,36 @@ export default function Settings() {
 
         <div className="mt-6">
           <label
-            htmlFor="first_name"
+            htmlFor="firstname"
             className="block text-sm text-gray-800 capitalize "
           >
             first name
           </label>
-          {errors.first_name && (
+          {errors.firstname && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.first_name?.message}
+              {errors.firstname?.message}
             </p>
           )}
           <input
-            {...register("first_name")}
+            {...register("firstname")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
         <div className="mt-6">
           <label
-            htmlFor="last_name"
+            htmlFor="lastname"
             className="block text-sm text-gray-800 capitalize "
           >
             last name
           </label>
-          {errors.last_name && (
+          {errors.lastname && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.last_name?.message}
+              {errors.lastname?.message}
             </p>
           )}
           <input
-            {...register("last_name")}
+            {...register("lastname")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -145,18 +145,18 @@ export default function Settings() {
 
         <div className="mt-6">
           <label
-            htmlFor="user_type"
+            htmlFor="usertype"
             className="block text-sm text-gray-800 capitalize "
           >
             account type
           </label>
-          {errors.user_type && (
+          {errors.usertype && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.user_type?.message}
+              {errors.usertype?.message}
             </p>
           )}
           <select
-            {...register("user_type")}
+            {...register("usertype")}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           >
             <option value="" className="py-2">
@@ -180,14 +180,16 @@ export default function Settings() {
               date of birth
             </label>
           </div>
-          {errors.birth_date && (
+          {errors.age && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.birth_date?.message}
+              {errors.age?.message}
             </p>
           )}
           <input
-            {...register("birth_date")}
-            type="date"
+            {...register("age")}
+            type="number"
+            min={18}
+            max={100}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>

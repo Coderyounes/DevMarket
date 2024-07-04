@@ -27,8 +27,8 @@ router.post('/resetpassword', userController.sendPasswordReset);
 
 // Freelance routes
 router.get('/freelance/userProfile', authenticate, checkFreelancer, freelanceController.userProfile);
-router.put('/freelance//updateProfile', authenticate, checkFreelancer, freelanceController.updateProfile);
-router.delete('/freelance//deleteProfile', authenticate, checkFreelancer, freelanceController.deleteProfile);
+router.put('/freelance/updateProfile', authenticate, checkFreelancer, freelanceController.updateProfile);
+router.delete('/freelance/deleteProfile', authenticate, checkFreelancer, freelanceController.deleteProfile);
 // Services routes
 router.post('/freelance/createService', authenticate, upload.array('images'), checkFreelancer, serviceController.createService);
 router.put('/freelance/updateService/:id', checkIdValidity, authenticate, checkFreelancer, serviceController.updateService);

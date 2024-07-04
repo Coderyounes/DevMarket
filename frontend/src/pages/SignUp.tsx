@@ -15,10 +15,18 @@ export default function SignUp() {
   const countryList = getNames();
 
   const { data: RegistrationResponse, trigger: startRegistering } =
-    useSWRMutation(`${BASE_URL}/auth/signup/`, postData, {
+    useSWRMutation(`${BASE_URL}/signup`, postData, {
       revalidate: false,
       onError: (err) => {
-        toast.error(err, { id: "toaster" });
+        console.log(err,'erororororo')
+        // if (Array.isArray(error_msg)) {
+        //   for (const elem in err) {
+        //     toast.error(err[elem], { id: "toaster" });
+        //   }
+        // } else {
+        //   toast.error(err, { id: "toaster" });
+        // }
+        toast.error(err['error'], { id: "toaster" });
       },
     });
   const {
@@ -35,6 +43,7 @@ export default function SignUp() {
   };
 
   if (RegistrationResponse) {
+    console.log(RegistrationResponse);
     redirect("/signin");
   }
 
@@ -89,36 +98,36 @@ export default function SignUp() {
 
         <div className="mt-6">
           <label
-            htmlFor="first_name"
+            htmlFor="firstname"
             className="block text-sm text-gray-800 capitalize "
           >
             first name
           </label>
-          {errors.first_name && (
+          {errors.firstname && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.first_name?.message}
+              {errors.firstname?.message}
             </p>
           )}
           <input
-            {...register("first_name")}
+            {...register("firstname")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
         <div className="mt-6">
           <label
-            htmlFor="last_name"
+            htmlFor="lastname"
             className="block text-sm text-gray-800 capitalize "
           >
             last name
           </label>
-          {errors.last_name && (
+          {errors.lastname && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.last_name?.message}
+              {errors.lastname?.message}
             </p>
           )}
           <input
-            {...register("last_name")}
+            {...register("lastname")}
             type="text"
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -150,25 +159,25 @@ export default function SignUp() {
 
         <div className="mt-6">
           <label
-            htmlFor="user_type"
+            htmlFor="usertype"
             className="block text-sm text-gray-800 capitalize "
           >
             account type
           </label>
-          {errors.user_type && (
+          {errors.usertype && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.user_type?.message}
+              {errors.usertype?.message}
             </p>
           )}
           <select
-            {...register("user_type")}
+            {...register("usertype")}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           >
             <option value="" className="py-2">
               --Please choose an option--
             </option>
-            <option value="freelancer" className="py-2">
-              freelancer
+            <option value="freelance" className="py-2">
+              freelance
             </option>
             <option value="employer" className="py-2">
               employer
@@ -185,14 +194,16 @@ export default function SignUp() {
               date of birth
             </label>
           </div>
-          {errors.birth_date && (
+          {errors.age && (
             <p className="mt-1 text-xs italic text-red-500">
-              {errors.birth_date?.message}
+              {errors.age?.message}
             </p>
           )}
           <input
-            {...register("birth_date")}
-            type="date"
+            {...register("age")}
+            type="number"
+            min={18}
+            max={100}
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>

@@ -1,11 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import {
-  registrationSchemaType,
-  loginSchemaType,
-  missionSchemaType,
-  serviceSchemaType,
-} from "../schema/schema_types";
-// import Cookies from 'js-cookie';
+
+import Cookies from 'js-cookie';
 
 export const getData = async (url: string): Promise<any> => {
   try {
@@ -37,7 +32,8 @@ export const getDataAuth = async (url: string): Promise<any> => {
   }
 };
 
-export const postData = async (url: string, arg: any): Promise<any> => {
+export const postData = async (url: string, {arg}: any): Promise<any> => {
+  console.log(arg,'lalalalla')
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {
@@ -54,7 +50,7 @@ export const postData = async (url: string, arg: any): Promise<any> => {
   }
 };
 
-export const postDataAuth = async (url: string, arg: any): Promise<any> => {
+export const postDataAuth = async (url: string, {arg}: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {
@@ -72,7 +68,7 @@ export const postDataAuth = async (url: string, arg: any): Promise<any> => {
   }
 };
 
-export const patchFormAuth = async (url: string, arg: any): Promise<any> => {
+export const patchFormAuth = async (url: string, {arg}: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.patch(url, arg, {
       headers: {
@@ -90,7 +86,7 @@ export const patchFormAuth = async (url: string, arg: any): Promise<any> => {
   }
 };
 
-export const postFormAuth = async (url: string, arg: any): Promise<any> => {
+export const postFormAuth = async (url: string, {arg}: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {

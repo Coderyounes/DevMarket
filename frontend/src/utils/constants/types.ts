@@ -23,8 +23,8 @@ export type Profile = {
   id: number;
   email: string;
   account_type: "freelancer" | "employer";
-  first_name: string;
-  last_name: string;
+  firstname: string;
+  lastname: string;
   country: string;
   age: number;
 };
