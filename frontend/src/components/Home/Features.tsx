@@ -2,8 +2,9 @@ import React from "react";
 
 export default function Features() {
   return (
-    <section className="py-10 bg-white sm:py-16 lg:py-24">
+    <section className="py-5 bg-white sm:py-8 lg:py-12">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <h1 className="text-center pb-5 text-2xl font-semibold capitalize">What you'll benefit from</h1>
         <div className="grid grid-cols-1 text-center sm:grid-cols-2 gap-y-8 lg:grid-cols-4 sm:gap-12">
           <div>
             <div className="flex items-center justify-center w-20 h-20 mx-auto bg-blue-100 rounded-full">

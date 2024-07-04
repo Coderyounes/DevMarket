@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
 import { getNames } from "country-list";
-import { registrationSchema } from "../utils/schema/auth_schema";
-import { registrationSchemaType } from "../utils/schema/schema_types";
+import { registrationSchema } from "../../utils/schema/auth_schema";
+import { registrationSchemaType } from "../../utils/schema/schema_types";
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useSWRMutation from "swr/mutation";
-import { BASE_URL } from "../utils/constants/config";
-import { postData } from "../utils/constants/api_caller";
+import { BASE_URL } from "../../utils/constants/config"
+import { postFormAuth } from "../../utils/constants/api_caller";
 import toast, { Toaster } from "react-hot-toast";
-import { redirect } from "react-router-dom";
 
-export default function SignUp() {
+export default function Settings() {
   const countryList = getNames();
 
   const { data: RegistrationResponse, trigger: startRegistering } =
-    useSWRMutation(`${BASE_URL}/auth/signup/`, postData, {
+    useSWRMutation(`${BASE_URL}/auth/signup/`, postFormAuth, {
       revalidate: false,
       onError: (err) => {
         toast.error(err, { id: "toaster" });
@@ -34,15 +33,11 @@ export default function SignUp() {
     startRegistering(data);
   };
 
-  if (RegistrationResponse) {
-    redirect("/signin");
-  }
-
   return (
     <div className="max-w-sm min-w-fit p-6 bg-white rounded-lg shadow-xl  mx-auto my-5 sm:my-14">
       <Toaster />
       <div className="flex justify-center mx-auto">
-        <h1 className="text-2xl font-semibold">Register</h1>
+        <h1 className="text-2xl font-semibold">Edit profile</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
         <div className="mt-4">
@@ -216,5 +211,5 @@ export default function SignUp() {
         </Link>
       </p>
     </div>
-  );
+  )
 }

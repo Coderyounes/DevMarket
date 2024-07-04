@@ -57,7 +57,7 @@ export default function ServicesSample({ title }: { title: string }) {
         </div>
 
         <div className="grid grid-cols-1 gap-6 px-4  sm:px-0 xl:grid-cols-4 sm:grid-cols-2">
-          {SERVICE_LIST.map((elem: ServiceCardType, index) => {
+          {SERVICE_LIST.slice(0,4).map((elem: ServiceCardType, index) => {
             return <ServiceCard key={index} data={elem} />;
           })}
         </div>
