@@ -9,16 +9,22 @@ import { BASE_URL } from "../utils/constants/config";
 import { postData } from "../utils/constants/api_caller";
 import toast, { Toaster } from "react-hot-toast";
 import { redirect } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../utils/store/store";
 
 export default function SignIn() {
+  const navigate = useNavigate();
+
+  const setUser = useAuthStore((state) => state.setUser);
+
   const { data: LoginResponse, trigger: startRegistering } = useSWRMutation(
-    `${BASE_URL}/auth/signin/`,
+    `${BASE_URL}/login`,
     postData,
     {
       revalidate: false,
       onError: (err) => {
-        toast.error(err, { id: "toaster" });
-        
+        toast.error(err["error"], { id: "toaster" });
       },
     }
   );
@@ -36,7 +42,20 @@ export default function SignIn() {
   };
 
   if (LoginResponse) {
-    redirect("/profile");
+    console.log(LoginResponse, "login res");
+    delete LoginResponse.__v;
+    setUser(LoginResponse);
+    Cookies.set("token", LoginResponse.idToken);
+    Cookies.set("email", LoginResponse.email);
+    Cookies.set("_id", LoginResponse._id);
+    Cookies.set("firstname", LoginResponse.firstname);
+    Cookies.set("lastname", LoginResponse.lastname);
+    Cookies.set("country", LoginResponse.country);
+    Cookies.set("usertype", LoginResponse.usertype);
+    Cookies.set("firebaseUID", LoginResponse.firebaseUID);
+    Cookies.set("age", LoginResponse.age);
+    Cookies.set("createdAt", LoginResponse.createdAt);
+    navigate("/profile");
   }
 
   return (

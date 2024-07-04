@@ -19,12 +19,12 @@ export type ServiceCardType = {
   rating?: number;
 };
 
-export type Profile = {
-  id: number;
-  email: string;
-  account_type: "freelancer" | "employer";
-  firstname: string;
-  lastname: string;
-  country: string;
-  age: number;
+export type ProfileType = {
+  _id: number | null;
+  email: string | null;
+  account_type: "freelance" | "employer" | null;
+  firstname: string | null;
+  lastname: string | null;
+  country: string | null;
+  age: number | null;
 };

@@ -1,11 +1,29 @@
 import { useState } from "react";
 import Settings from "../components/profile/Settings";
 import Tasks from "../components/profile/Tasks";
+import { useAuthStore } from "../utils/store/store";
+import useSWRMutation from "swr/mutation";
 
 import Missions from "../components/profile/Missions";
 
 export default function Profile() {
   const [showSettings, setShowSettings] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  // const setUser = useAuthStore((state) => state.setUser);
+  console.log(user, "ser data");
+
+  // const { isLoading } = useSWRImmutable(
+  //   `${BASE_URL}/book/get-book/${params.book_id}`,
+  //   getData,
+  //   {
+  //     onSuccess: (data) => {
+  //       setBookDetails(data);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, 'book details err');
+  //     },
+  //   }
+  // );
 
   return (
     <section>

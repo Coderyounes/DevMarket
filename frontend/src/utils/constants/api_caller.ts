@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export const getData = async (url: string): Promise<any> => {
   try {
@@ -19,7 +19,7 @@ export const getDataAuth = async (url: string): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.get(url, {
       headers: {
-        // Authorization: `Bearer ${Cookies.get('jwtToken')}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
@@ -32,8 +32,7 @@ export const getDataAuth = async (url: string): Promise<any> => {
   }
 };
 
-export const postData = async (url: string, {arg}: any): Promise<any> => {
-  console.log(arg,'lalalalla')
+export const postData = async (url: string, { arg }: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {
@@ -50,12 +49,12 @@ export const postData = async (url: string, {arg}: any): Promise<any> => {
   }
 };
 
-export const postDataAuth = async (url: string, {arg}: any): Promise<any> => {
+export const postDataAuth = async (url: string, { arg }: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${Cookies.get("jwtToken")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
@@ -68,12 +67,15 @@ export const postDataAuth = async (url: string, {arg}: any): Promise<any> => {
   }
 };
 
-export const patchFormAuth = async (url: string, {arg}: any): Promise<any> => {
+export const patchFormAuth = async (
+  url: string,
+  { arg }: any
+): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.patch(url, arg, {
       headers: {
         "Content-Type": "multipart/form-data",
-        // Authorization: `Bearer ${Cookies.get("jwtToken")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
@@ -86,12 +88,12 @@ export const patchFormAuth = async (url: string, {arg}: any): Promise<any> => {
   }
 };
 
-export const postFormAuth = async (url: string, {arg}: any): Promise<any> => {
+export const postFormAuth = async (url: string, { arg }: any): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.post(url, arg, {
       headers: {
         "Content-Type": "multipart/form-data",
-        // Authorization: `Bearer ${Cookies.get("jwtToken")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
@@ -108,7 +110,7 @@ export const patchDataAuth = async (url: string): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.patch(url, null, {
       headers: {
-        // Authorization: `Bearer ${Cookies.get("jwtToken")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
@@ -125,7 +127,7 @@ export const putAuth = async (url: string): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.put(url, null, {
       headers: {
-        // Authorization: `Bearer ${Cookies.get("jwtToken")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
       },
     });
     return { ...response.data, status: response.status };
