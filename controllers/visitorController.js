@@ -88,15 +88,16 @@ const allServices = async (req, res) => {
   }
 };
 
-/* const project_sample = async (req, res) => {
-  const category = req.params.category;
+const latestDev = async (req, res) => {
   try {
-    const projects =
+    const freelancers = await freelance.find().sort({ createdAt: -1 }).limit(4);
+    return res.status(200).json(freelancers);
   } catch (error) {
-
+    console.log(error);
+    return res.status(500).send('Internal Server Error');
   }
-}; */
+};
 
 module.exports = {
-  getProfile, allProfiles, readProject, allProjects, readService, allServices, project_sample,
+  getProfile, allProfiles, readProject, allProjects, readService, allServices, latestDev,
 };
