@@ -98,5 +98,5 @@ const allServices = async (req, res) => {
 }; */
 
 module.exports = {
-  getProfile, allProfiles, readProject, allProjects, readService, allServices, project_sample,
+  getProfile, allProfiles, readProject, allProjects, readService, allServices
 };

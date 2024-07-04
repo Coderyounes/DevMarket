@@ -9,24 +9,19 @@ import useSWRMutation from "swr/mutation";
 import { BASE_URL } from "../utils/constants/config";
 import { postData } from "../utils/constants/api_caller";
 import toast, { Toaster } from "react-hot-toast";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const countryList = getNames();
+  const navigate = useNavigate();
 
   const { data: RegistrationResponse, trigger: startRegistering } =
     useSWRMutation(`${BASE_URL}/signup`, postData, {
       revalidate: false,
       onError: (err) => {
-        console.log(err,'erororororo')
-        // if (Array.isArray(error_msg)) {
-        //   for (const elem in err) {
-        //     toast.error(err[elem], { id: "toaster" });
-        //   }
-        // } else {
-        //   toast.error(err, { id: "toaster" });
-        // }
-        toast.error(err['error'], { id: "toaster" });
+        console.log(err, "erororororo");
+
+        toast.error(err["error"], { id: "toaster" });
       },
     });
   const {
@@ -44,7 +39,8 @@ export default function SignUp() {
 
   if (RegistrationResponse) {
     console.log(RegistrationResponse);
-    redirect("/signin");
+    toast.success("user created successfully");
+    navigate("/signin");
   }
 
   return (
