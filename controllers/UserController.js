@@ -1,4 +1,4 @@
-const firebase = require('firebase/app');
+// const firebase = require('firebase/app');
 const { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } = require('firebase/auth');
 const admin = require('../config/firebase-admin-config');
 const getModelByUserType = require('../utils/getModelByUserType');

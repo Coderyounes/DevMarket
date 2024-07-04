@@ -88,6 +88,15 @@ const allServices = async (req, res) => {
   }
 };
 
+const project_sample = async (req, res) => {
+  const category = req.params.category;
+  try {
+    const projects = 
+  } catch (error) {
+
+  }
+};
+
 module.exports = {
-  getProfile, allProfiles, readProject, allProjects, readService, allServices,
+  getProfile, allProfiles, readProject, allProjects, readService, allServices, project_sample,
 };
