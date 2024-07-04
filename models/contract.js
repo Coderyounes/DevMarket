@@ -10,12 +10,11 @@ const contractSchema = new mongoose.Schema({
   requirement: {
     type: String,
     required: true,
-    min: 300,
+    min: 10,
     max: 5000,
   },
   conditions: {
     type: String,
-    required: true,
     min: 50,
     max: 3000,
   },
@@ -27,13 +26,9 @@ const contractSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  createdAT: {
-    type: Date,
-    default: Date.now,
-  },
   status: {
     type: String,
-    enum: ['pending', 'canceled', 'ongoing', 'rejected'],
+    enum: ['pending', 'canceled', 'ongoing', 'rejected', 'finish'],
     default: 'pending',
   },
   startAT: {
@@ -43,13 +38,22 @@ const contractSchema = new mongoose.Schema({
     type: Date,
   },
   employerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'employers',
+    type: String,
+    required: true,
+  },
+  projectId: {
+    type: String,
+    required: true,
   },
   freelancerId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'freelancers',
+    type: String,
   },
+  isDelivered: {
+    type: Boolean,
+    default: false,
+  },
+}, {
+  timestamps: true,
 });
 
 const contract = mongoose.model('contracts', contractSchema);
