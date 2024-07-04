@@ -3,6 +3,7 @@ import Settings from "../components/profile/Settings";
 import Tasks from "../components/profile/Tasks";
 import { useAuthStore } from "../utils/store/store";
 import useSWRMutation from "swr/mutation";
+import Cookies from "js-cookie";
 
 import Missions from "../components/profile/Missions";
 
@@ -31,17 +32,20 @@ export default function Profile() {
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-stretch justify-between sm:items-center">
-              <img
+              {/* <img
                 className="object-cover w-32 h-auto sm:-mb-14 shrink-0 rounded-xl"
                 src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/mint-success/3/image.png"
                 alt=""
-              />
+              /> */}
 
               <div className="flex flex-col justify-between flex-1 ml-8 sm:flex-row sm:items-center sm:space-x-6">
                 <div className="sm:flex-1">
-                  <p className="text-xl font-bold text-white">Sad Ape #258</p>
+                  <p className="text-xl font-bold text-white">
+                    {Cookies.get("firstname")} {' '}
+                    {Cookies.get("lastname")}
+                  </p>
                   <p className="mt-1 text-base font-medium text-gray-400">
-                    Lorem ipsum dolor sit amet elit
+                    {Cookies.get("country")}
                   </p>
                 </div>
 
@@ -52,7 +56,9 @@ export default function Profile() {
                     className="inline-flex items-center justify-center w-full px-5 py-3 text-xs font-bold tracking-widest text-gray-500 uppercase transition-all duration-200 bg-white border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 hover:bg-gray-100 hover:text-gray-900"
                     role="button"
                   >
-                    New Mission
+                    {Cookies.get("usertype") == "freelance"
+                      ? "new service"
+                      : "new mission"}
                   </a>
                 </div>
               </div>
