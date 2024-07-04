@@ -48,6 +48,9 @@ const EmployerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  firebaseUID: {
+    type: String,
+  },
   city: { type: String },
   photo: { type: Buffer },
 });
