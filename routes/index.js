@@ -64,6 +64,7 @@ router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
 router.get('/allProjects', visitorController.allProjects);
+router.get('/project_sample/:category', visitorController.project_sample);
 
 // messages
 router.post('/messages', MessageController.sendMessage);
