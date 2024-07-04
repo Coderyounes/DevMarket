@@ -6,7 +6,7 @@ import { registrationSchemaType } from "../../utils/schema/schema_types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useSWRMutation from "swr/mutation";
-import { BASE_URL } from "../../utils/constants/config"
+import { BASE_URL } from "../../utils/constants/config";
 import { postFormAuth } from "../../utils/constants/api_caller";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -37,7 +37,7 @@ export default function Settings() {
     <div className="max-w-sm min-w-fit p-6 bg-white rounded-lg shadow-xl  mx-auto my-5 sm:my-14">
       <Toaster />
       <div className="flex justify-center mx-auto">
-        <h1 className="text-2xl font-semibold">Edit profile</h1>
+        <h1 className="text-2xl font-semibold">Edit Profile</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
         <div className="mt-4">
@@ -197,19 +197,10 @@ export default function Settings() {
             type="submit"
             className="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
           >
-            Sign In
+            Update Profile
           </button>
         </div>
       </form>
-      <p className="mt-8 text-xs font-light text-center text-gray-400">
-        Already have an account?
-        <Link
-          to="/signin"
-          className="font-medium text-blue-600  hover:underline"
-        >
-          Sign in
-        </Link>
-      </p>
     </div>
-  )
+  );
 }
