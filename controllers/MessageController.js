@@ -23,7 +23,7 @@ const sendTemplateMessage = async (req, res) => {
 const sendMessage = async (req, res) => {
   const senderId = req.user.uid;
   const { receiverId, text } = req.body;
-
+  // TODO: Create a Conversation where the messages Stores
   const chatId = Message.generateChatId(senderId, receiverId);
   await Message.getMessages(chatId);
 
@@ -39,7 +39,7 @@ const sendMessage = async (req, res) => {
 // Get Messages
 const getMessages = async (req, res) => {
   const userId = req.user.uid;
-
+  // TODO: fetch using the COnversationID
   try {
     const messages = await Message.getMessages(userId);
     res.status(200).json(messages);

@@ -6,7 +6,7 @@ const generateChatId = (senderId, receiverId) => [senderId, receiverId].sort().j
 // Send Message
 exports.sendMessage = async (senderId, receiverId, text) => {
   const chatId = generateChatId(senderId, receiverId);
-
+  // TODO: implement a Conversation
   try {
     await db.collection('messages').add({
       chatId,
@@ -28,7 +28,7 @@ exports.getMessages = async (userId) => {
     const messagesSnapshot = await db.collection('messages')
       .orderBy('createdAt')
       .get();
-
+    // TODO: USE COnversation ID
     const messages = messagesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
