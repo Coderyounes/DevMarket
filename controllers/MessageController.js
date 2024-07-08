@@ -38,10 +38,10 @@ const sendMessage = async (req, res) => {
 
 // Get Messages
 const getMessages = async (req, res) => {
-  const { chatId } = req.params;
+  const userId = req.user.uid;
 
   try {
-    const messages = await Message.getMessages(chatId);
+    const messages = await Message.getMessages(userId);
     res.status(200).json(messages);
   } catch (error) {
     console.error('Error fetching messages:', error);

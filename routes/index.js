@@ -68,8 +68,8 @@ router.get('/latest', visitorController.latestDev);
 // router.get('/project_sample/:category', visitorController.project_sample);
 
 // messages
-router.post('/messages', MessageController.sendMessage); // TODO: MiddleCheck if he can send Messages
-router.get('/messages/:chatId', MessageController.getMessages); // TODO: check if he has permission to read messages
+router.post('/sendMessages', authenticate, MessageController.sendMessage); // TODO: MiddleCheck if he can send Messages
+router.get('/messages/', authenticate, MessageController.getMessages); // TODO: check if he has permission to read messages
 
 /*
 add new controller sendMessage : that send a template message

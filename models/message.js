@@ -23,17 +23,17 @@ exports.sendMessage = async (senderId, receiverId, text) => {
 };
 
 // Get Messages
-exports.getMessages = async (chatId) => {
+exports.getMessages = async (userId) => {
   try {
     const messagesSnapshot = await db.collection('messages')
-      .where('chatId', '==', chatId)
       .orderBy('createdAt')
       .get();
 
     const messages = messagesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
-    }));
+    })).filter((message) => message.chatId.includes(userId));
+
     return messages;
   } catch (error) {
     console.error('Error fetching messages:', error);
