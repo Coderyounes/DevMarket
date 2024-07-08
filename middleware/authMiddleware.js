@@ -1,4 +1,4 @@
-const admin = require('../config/firebase-admin-config');
+const { auth } = require('../config/firebase-admin-config');
 
 // eslint-disable-next-line consistent-return
 const authenticate = async (req, res, next) => {
@@ -8,7 +8,7 @@ const authenticate = async (req, res, next) => {
     if (!idToken) {
       return res.status(401).send('Unauthorized');
     }
-    const decodedToken = await admin.auth().verifyIdToken(idToken, true);
+    const decodedToken = await auth.verifyIdToken(idToken, true);
     req.user = decodedToken;
     next();
   } catch (error) {

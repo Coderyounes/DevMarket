@@ -1,11 +1,17 @@
 const { admin, db } = require('../config/firebase-admin-config');
 
+// Generate a unique chat ID based on participants
+const generateChatId = (senderId, receiverId) => [senderId, receiverId].sort().join('_');
+
 // Send Message
-exports.sendMessage = async (chatId, senderId, text) => {
+exports.sendMessage = async (senderId, receiverId, text) => {
+  const chatId = generateChatId(senderId, receiverId);
+
   try {
     await db.collection('messages').add({
       chatId,
       senderId,
+      receiverId,
       text,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });

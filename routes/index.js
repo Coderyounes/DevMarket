@@ -50,7 +50,7 @@ router.delete('/employer/deleteProject/:id', checkIdValidity, authenticate, chec
 router.get('/allProposals/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.readallproposal);
 router.get('/expandProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.readoneproposal);
 router.post('/rejectProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.rejectProposal);
-router.post('/acceptProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.acceptProposal);
+router.post('/acceptProposal/:id', checkIdValidity, authenticate, checkEmployer, jobproposal.acceptProposal, MessageController.sendTemplateMessage);
 // Contract Management routes
 router.post('/contracts/:id', checkIdValidity, authenticate, checkEmployer, ContractController.createContract);
 router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.updateContract);
@@ -68,6 +68,11 @@ router.get('/latest', visitorController.latestDev);
 // router.get('/project_sample/:category', visitorController.project_sample);
 
 // messages
-router.post('/messages', MessageController.sendMessage);
-router.get('/messages/:chatId', MessageController.getMessages);
+router.post('/messages', MessageController.sendMessage); // TODO: MiddleCheck if he can send Messages
+router.get('/messages/:chatId', MessageController.getMessages); // TODO: check if he has permission to read messages
+
+/*
+add new controller sendMessage : that send a template message
+integrate that controller with the acceptProposal route to trigger after the proposal accepting
+ */
 module.exports = router;
