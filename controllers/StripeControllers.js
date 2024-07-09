@@ -5,6 +5,7 @@ const Contract = require('../models/contract');
 const Freelancer = require('../models/freelance');
 const Employer = require('../models/employer');
 
+// TODO: trigger when the freelance accept the contract
 exports.handlePaymentWorkflow = async (contractId) => {
   const contract = await Contract.findById(contractId);
 
@@ -27,6 +28,7 @@ exports.handlePaymentWorkflow = async (contractId) => {
   return clientSecret.client_secret;
 };
 
+// TODO: trigger when the EMployer accept the delivery
 exports.handleDeliveryAcceptance = async (contractId) => {
   const contract = await Contract.findById(contractId);
 
