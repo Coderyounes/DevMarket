@@ -22,17 +22,18 @@ exports.sendMessage = async (senderId, receiverId, text) => {
   }
 };
 
-// Get Messages
 exports.getMessages = async (userId) => {
   try {
+    const chatIdPattern = new RegExp(userId);
     const messagesSnapshot = await db.collection('messages')
+      .where('chatId', '==', chatIdPattern)
       .orderBy('createdAt')
       .get();
-    // TODO: USE COnversation ID
+
     const messages = messagesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
-    })).filter((message) => message.chatId.includes(userId));
+    }));
 
     return messages;
   } catch (error) {
