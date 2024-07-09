@@ -34,6 +34,10 @@ const freelanceSchema = new mongoose.Schema({
     trim: true,
     match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   },
+  balance: {
+    type: Number,
+    default: 0,
+  },
   age: {
     type: Number,
     required: true,

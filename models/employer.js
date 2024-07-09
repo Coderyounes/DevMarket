@@ -31,6 +31,10 @@ const EmployerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  balance: {
+    type: Number,
+    default: 500,
+  },
   email: {
     type: String,
     required: true,
