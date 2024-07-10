@@ -18,7 +18,7 @@ export default function CategoriesSlider() {
         <div className="slider-container">
           <Slider {...CategorySettingsSlider}>
             {ALL_CATEGORIES.map((elem, index) => {
-              return <CategoryElem key={index} name={elem} />;
+              return <CategoryElem key={index} obj={elem} />;
             })}
           </Slider>
         </div>

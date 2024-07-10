@@ -3,12 +3,20 @@ import { SERVICE_LIST } from "../utils/constants/constant";
 import { getRandomNumber } from "../utils/constants/func";
 import { ServiceCardType } from "../utils/constants/types";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import Proposal from "../components/shared/Proposal_Model";
 
-export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
+export default function MissionDetails() {
+  const [showProposal, setShowProposal] = useState(false);
+  const { mission_id } = useParams();
+
+  console.log(mission_id);
+
   const [showDescription, setShowDescription] = useState(true);
-  const data = SERVICE_LIST[0];
+  const data = SERVICE_LIST[mission_id as number];
   return (
     <section className="py-6 bg-gray-50 sm:py-8">
+      {showProposal && <Proposal close={setShowProposal} />}
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1  lg:grid-rows-1 gap-y-12  lg:grid-cols-5 lg:gap-y-16 lg:gap-x-12 xl:gap-x-16">
           <div className="lg:col-span-2 lg:row-end-2 lg:row-span-2">
@@ -18,9 +26,7 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
 
             <div className="flex items-center mt-5">
               <Stars rating={data.rating as number} />
-              <p className="ml-2 text-sm font-medium text-gray-400">
-                157 Reviews
-              </p>
+              <p className="ml-2 text-sm font-medium text-gray-400">1 Review</p>
             </div>
 
             <div className="flex items-center mt-8">
@@ -33,7 +39,7 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
             </div>
 
             <ul className="mt-8 space-y-3">
-              <li className="flex items-center text-sm font-medium text-gray-500">
+              {/* <li className="flex items-center text-sm font-medium text-gray-500">
                 <svg
                   className="w-5 h-5 mr-2.5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,25 +55,7 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
                   />
                 </svg>
                 Free shipping worldwide
-              </li>
-
-              <li className="flex items-center text-sm font-medium text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2.5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                  />
-                </svg>
-                100% Secured Payment
-              </li>
+              </li> */}
 
               <li className="flex items-center text-sm font-medium text-gray-500">
                 <svg
@@ -130,46 +118,12 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
 
             <div className="flex items-center mt-10 space-x-4">
               <button
+                onClick={() => setShowProposal(true)}
                 type="button"
                 className="inline-flex items-center justify-center px-12 py-3 text-base font-bold leading-7 text-white transition-all duration-200 bg-gray-900 border-2 border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-700"
               >
                 Send Proposal
               </button>
-
-              {/* <button
-                type="button"
-                className="
-                            inline-flex
-                            items-center
-                            justify-center
-                            px-4
-                            py-3.5
-                            text-gray-900
-                            transition-all
-                            duration-200
-                            bg-transparent
-                            border-2 border-gray-300
-                            rounded-md
-                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900
-                            hover:border-gray-900 hover:bg-gray-100
-                            focus:border-gray-900
-                        "
-              >
-                <svg
-                  className="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-              </button> */}
             </div>
           </div>
 
@@ -196,9 +150,9 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
                       : "text-gray-500 border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 "
                   }`}
                 >
-                  Proposals
+                  Reviews
                   <span className="block px-2 py-0.5 ml-2 text-xs font-bold bg-gray-400 rounded-full text-gray-50">
-                    157
+                    1
                   </span>
                 </button>
               </nav>
@@ -236,9 +190,7 @@ export default function MissionDetails({ data_ }: { data_: ServiceCardType }) {
 
               {showDescription && (
                 <p className="mt-5 text-base font-normal leading-7 text-gray-900">
-                  You made it so simple. My new site is so much faster and
-                  easier to work with than my old site. I just choose the page,
-                  make the changes.
+                  {data.description}
                 </p>
               )}
             </div>

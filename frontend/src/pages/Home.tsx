@@ -11,9 +11,9 @@ export default function Home() {
       <Hero />
       <CategoriesSlider />
       <FreelancersSlider />
-      {ALL_CATEGORIES.map((category, index) => (
-        <ServicesSample key={index} title={category} />
-      ))}
+      
+        <ServicesSample />
+      
       <Features />
     </>
   );

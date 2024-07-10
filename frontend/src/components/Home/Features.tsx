@@ -4,8 +4,10 @@ export default function Features() {
   return (
     <section className="py-5 bg-white sm:py-8 lg:py-12">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <h1 className="text-center pb-5 text-2xl font-semibold capitalize">What you'll benefit from</h1>
-        <div className="grid grid-cols-1 text-center sm:grid-cols-2 gap-y-8 lg:grid-cols-4 sm:gap-12">
+        <h1 className="text-center pb-5 text-2xl font-semibold capitalize">
+          What you'll benefit from
+        </h1>
+        <div className="grid grid-cols-1 text-center sm:grid-cols-2 gap-y-8 lg:grid-cols-3 sm:gap-12">
           <div>
             <div className="flex items-center justify-center w-20 h-20 mx-auto bg-blue-100 rounded-full">
               <svg
@@ -55,32 +57,6 @@ export default function Features() {
             <p className="mt-4 text-sm text-gray-600">
               Provides a platform for freelancers to browse and apply for
               various job opportunities.
-            </p>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-center w-20 h-20 mx-auto bg-green-100 rounded-full">
-              <svg
-                className="text-green-600 w-9 h-9"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
-            </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">
-              Messaging System
-            </h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Enables direct communication between freelancers and clients for
-              seamless collaboration.
             </p>
           </div>
 

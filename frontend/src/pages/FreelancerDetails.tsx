@@ -3,14 +3,15 @@ import { SERVICE_LIST } from "../utils/constants/constant";
 import { getRandomNumber } from "../utils/constants/func";
 import { ServiceCardType } from "../utils/constants/types";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function FreelancerDetails({
-  data_,
-}: {
-  data_: ServiceCardType;
-}) {
+export default function FreelancerDetails() {
+  const { freelancer_id } = useParams();
+
+  console.log(freelancer_id);
+
   const [showDescription, setShowDescription] = useState(true);
-  const data = SERVICE_LIST[0];
+  const data = SERVICE_LIST[freelancer_id as number];
   return (
     <section className="py-12 bg-gray-50 sm:py-16">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -37,7 +38,7 @@ export default function FreelancerDetails({
             <div className="flex items-center mt-5">
               <Stars rating={data.rating as number} />
               <p className="ml-2 text-sm font-medium text-gray-400">
-                157 Reviews
+                2 Reviews
               </p>
             </div>
 
@@ -51,7 +52,7 @@ export default function FreelancerDetails({
             </div>
 
             <ul className="mt-8 space-y-3">
-              <li className="flex items-center text-sm font-medium text-gray-500">
+              {/* <li className="flex items-center text-sm font-medium text-gray-500">
                 <svg
                   className="w-5 h-5 mr-2.5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -67,25 +68,7 @@ export default function FreelancerDetails({
                   />
                 </svg>
                 Free shipping worldwide
-              </li>
-
-              <li className="flex items-center text-sm font-medium text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2.5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                  />
-                </svg>
-                100% Secured Payment
-              </li>
+              </li> */}
 
               <li className="flex items-center text-sm font-medium text-gray-500">
                 <svg
@@ -153,41 +136,6 @@ export default function FreelancerDetails({
               >
                 Send Proposal
               </button>
-
-              {/* <button
-                type="button"
-                className="
-                            inline-flex
-                            items-center
-                            justify-center
-                            px-4
-                            py-3.5
-                            text-gray-900
-                            transition-all
-                            duration-200
-                            bg-transparent
-                            border-2 border-gray-300
-                            rounded-md
-                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900
-                            hover:border-gray-900 hover:bg-gray-100
-                            focus:border-gray-900
-                        "
-              >
-                <svg
-                  className="w-6 h-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
-              </button> */}
             </div>
           </div>
 

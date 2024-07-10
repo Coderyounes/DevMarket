@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function MissionCard({ data }: { data: ServiceCardType }) {
   return (
     <Link
-      to={`/missions/${data.id}`}
+      to={`/mission_details/${data.id}`}
       className="justify-self-center w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg mx-5 hover:cursor-pointer"
     >
       <div className="flex items-center px-6 py-3 bg-gray-900">

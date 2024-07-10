@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Employers() {
   return (
     <section className="container mx-auto ">
-      <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-4 sm:grid-cols-2">
+      <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-3 sm:grid-cols-2">
         {SERVICE_LIST.map((elem: ServiceCardType, index) => {
           return <MissionCard key={index} data={elem} />;
         })}

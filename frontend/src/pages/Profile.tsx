@@ -77,7 +77,7 @@ export default function Profile() {
                   className="px-0 py-4 text-xs font-bold tracking-wide text-gray-400 uppercase border-b-2 border-gray-900 sm:pr-10 whitespace-nowrap"
                   aria-current="page"
                 >
-                  Missions
+                 Proposals
                 </button>
 
                 <button

@@ -9,7 +9,7 @@ export default function FreelancerCard({ data }: { data: FreelancerCardType }) {
         className="w-1/3 bg-cover"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
+            `url('${data.profile_img}')`,
         }}
       ></div>
 

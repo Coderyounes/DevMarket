@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function ServiceCard({ data }: { data: ServiceCardType }) {
   return (
     <Link
-      to={`/${data.id}`}
+      to={`/freelancer_details/${data.id}`}
       className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg px-5 hover:cursor-pointer"
     >
       <img

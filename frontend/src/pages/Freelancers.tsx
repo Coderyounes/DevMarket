@@ -6,7 +6,7 @@ import ServiceCard from "../components/Home/ServiceCard";
 export default function Freelancers() {
   return (
     <section className="container mx-auto ">
-      <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-4 sm:grid-cols-2">
+      <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-3 sm:grid-cols-2">
         {SERVICE_LIST.map((elem: ServiceCardType, index) => {
           return <ServiceCard key={index} data={elem} />;
         })}
