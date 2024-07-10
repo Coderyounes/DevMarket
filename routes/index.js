@@ -10,6 +10,7 @@ const upload = require('../middleware/uploadMiddleware');
 const jobproposal = require('../controllers/JobApplicationController');
 const ContractController = require('../controllers/ContractController');
 const MessageController = require('../controllers/MessageController');
+const StripeController = require('../controllers/StripeControllers');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -56,9 +57,9 @@ router.post('/contracts/:id', checkIdValidity, authenticate, checkEmployer, Cont
 router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.updateContract);
 router.delete('/deleteContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.deleteContract);
 router.get('/readContract/:id', checkIdValidity, authenticate, ContractController.readContract); // Employer and Freelance can read Contract
-router.patch('/acceptContract/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.acceptContract);
+router.patch('/acceptContract/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.acceptContract, StripeController.handlePaymentWorkflow);
 router.patch('/deliver/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.deliverWork);
-router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, ContractController.acceptWork);
+router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, ContractController.acceptWork, StripeController.handleDeliveryAcceptance);
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);

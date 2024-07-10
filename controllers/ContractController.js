@@ -80,7 +80,7 @@ const deleteContract = async (req, res) => {
 };
 
 // Re enforce this to check freelanceId before accpt
-const acceptContract = async (req, res) => {
+const acceptContract = async (req, res, next) => {
   const contractId = req.params.id;
   const freelanceId = req.user.uid;
   try {
@@ -91,13 +91,14 @@ const acceptContract = async (req, res) => {
       { new: true },
     );
     contract.startAT = new Date();
-    contract.endAT = new Date(contract.startAT.getTime() + 30 * 24 * 60 * 60 * 1000);// calculation not Correct
+    contract.endAT = new Date(contract.startAT.getTime() + 30 * 24 * 60 * 60 * 1000); // calculation not Correct
     contract.save();
     await Project.findByIdAndUpdate(
       { _id: contract.projectId },
       { status: 'Closed', freelance: freelanceId },
     );
-    return res.status(200).send('Contract Accepted');
+    next();
+    // return res.status(200).send('Contract Accepted');
   } catch (error) {
     console.log(error);
     return res.status(500).send('Internal Server Error');
@@ -122,7 +123,7 @@ const deliverWork = async (req, res) => {
   }
 };
 
-const acceptWork = async (req, res) => {
+const acceptWork = async (req, res, next) => {
   const contractId = req.params.id;
   try {
     const contract = await Contract.findById(contractId);
@@ -132,9 +133,10 @@ const acceptWork = async (req, res) => {
     contract.status = 'finish';
     const project = await Project.findById(contract.projectId);
     project.status = 'finish';
-    contract.save();
-    project.save();
-    return res.status(200).send('Work Accepted !');
+    await contract.save();
+    await project.save();
+    next();
+    // return res.status(200).send('Work Accepted !');
   } catch (error) {
     console.log(error);
     return res.status(500).send('Internal Server Error');
