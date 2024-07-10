@@ -27,4 +27,6 @@ export type ProfileType = {
   lastname: string | null;
   country: string | null;
   age: number | null;
+  idToken: string | null;
+  firebaseUID: string | null;
 };

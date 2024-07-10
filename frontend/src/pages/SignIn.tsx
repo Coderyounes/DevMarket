@@ -42,19 +42,10 @@ export default function SignIn() {
   };
 
   if (LoginResponse) {
-    console.log(LoginResponse, "login res");
     delete LoginResponse.__v;
     setUser(LoginResponse);
     Cookies.set("token", LoginResponse.idToken);
-    Cookies.set("email", LoginResponse.email);
-    Cookies.set("_id", LoginResponse._id);
-    Cookies.set("firstname", LoginResponse.firstname);
-    Cookies.set("lastname", LoginResponse.lastname);
-    Cookies.set("country", LoginResponse.country);
-    Cookies.set("usertype", LoginResponse.usertype);
-    Cookies.set("firebaseUID", LoginResponse.firebaseUID);
-    Cookies.set("age", LoginResponse.age);
-    Cookies.set("createdAt", LoginResponse.createdAt);
+
     navigate("/profile");
   }
 

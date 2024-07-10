@@ -2,22 +2,28 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import logo from "../../res/logo.png";
 import { useAuthStore } from "../../utils/store/store";
-import Cookies from "js-cookie";
 import useSWRMutation from "swr/mutation";
 import { postDataAuth } from "../../utils/constants/api_caller";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants/config";
+import { ProfileType } from "../../utils/constants/types";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
   const [token, setToken] = useState<string | undefined>();
-  const user = useAuthStore((state) => state.user);
+
+  const user: ProfileType = useAuthStore((state) => state.user);
+  const resetUser = useAuthStore((state) => state.reset);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    setToken(Cookies.get("token"));
+    console.log("getting alled from nav after sign in"), user;
+    if (user.idToken) {
+      setToken(user.idToken);
+    }
     console.log(user, "context");
-  }, []);
+  }, [user]);
 
   const { trigger: startLoggingOut } = useSWRMutation(
     `${BASE_URL}/logout`,
@@ -25,18 +31,8 @@ export default function Navbar() {
     {
       revalidate: false,
       onSuccess: (data) => {
-        Cookies.remove("token");
-        Cookies.remove("email");
-        Cookies.remove("_id");
-        Cookies.remove("firstname");
-        Cookies.remove("lastname");
-        Cookies.remove("country");
-        Cookies.remove("usertype");
-        Cookies.remove("firebaseUID");
-        Cookies.remove("age");
-        Cookies.remove("createdAt");
+        resetUser();
         setToken(undefined);
-        // setUser(initial_user_state);
         navigate("/");
       },
     }
@@ -144,12 +140,10 @@ export default function Navbar() {
               <div className="flex items-center mt-4 lg:mt-0">
                 <Link
                   to={"/profile"}
-                  className="flex items-center focus:outline-none"
+                  className="flex items-center focus:outline-none font-bold"
                   aria-label="toggle profile dropdown"
                 >
-                  <h3 className="mx-2 text-gray-700">
-                    {Cookies.get("lastname")}
-                  </h3>
+                  <h3 className="mx-2 text-gray-700">{user["lastname"]}</h3>
                 </Link>
 
                 <svg

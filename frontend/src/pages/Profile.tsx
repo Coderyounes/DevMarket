@@ -11,7 +11,7 @@ export default function Profile() {
   const [showSettings, setShowSettings] = useState(false);
   const user = useAuthStore((state) => state.user);
   // const setUser = useAuthStore((state) => state.setUser);
-  console.log(user, "ser data");
+  console.log(user, "user data");
 
   // const { isLoading } = useSWRImmutable(
   //   `${BASE_URL}/book/get-book/${params.book_id}`,
@@ -41,11 +41,10 @@ export default function Profile() {
               <div className="flex flex-col justify-between flex-1 ml-8 sm:flex-row sm:items-center sm:space-x-6">
                 <div className="sm:flex-1">
                   <p className="text-xl font-bold text-white">
-                    {Cookies.get("firstname")} {' '}
-                    {Cookies.get("lastname")}
+                    {user["firstname"]} {user["lastname"]}
                   </p>
                   <p className="mt-1 text-base font-medium text-gray-400">
-                    {Cookies.get("country")}
+                    {user["country"]}
                   </p>
                 </div>
 
@@ -56,7 +55,7 @@ export default function Profile() {
                     className="inline-flex items-center justify-center w-full px-5 py-3 text-xs font-bold tracking-widest text-gray-500 uppercase transition-all duration-200 bg-white border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 hover:bg-gray-100 hover:text-gray-900"
                     role="button"
                   >
-                    {Cookies.get("usertype") == "freelance"
+                    {user["usertype"] == "freelance"
                       ? "new service"
                       : "new mission"}
                   </a>
@@ -77,7 +76,7 @@ export default function Profile() {
                   className="px-0 py-4 text-xs font-bold tracking-wide text-gray-400 uppercase border-b-2 border-gray-900 sm:pr-10 whitespace-nowrap"
                   aria-current="page"
                 >
-                 Proposals
+                  Proposals
                 </button>
 
                 <button

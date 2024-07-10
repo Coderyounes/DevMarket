@@ -1,9 +1,15 @@
 // const firebase = require('firebase/app');
-const { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } = require('firebase/auth');
-const { auth } = require('../config/firebase-admin-config');
-const getModelByUserType = require('../utils/getModelByUserType');
-require('dotenv').config({ path: './utils/.env' });
-require('../config/firebase-config');
+const {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} = require("firebase/auth");
+const { auth } = require("../config/firebase-admin-config");
+const getModelByUserType = require("../utils/getModelByUserType");
+require("dotenv").config({ path: "./utils/.env" });
+require("../config/firebase-config");
+const freelance = require('../models/freelance');
+
 
 const signUp = async (req, res) => {
   const {
@@ -93,7 +99,7 @@ const login = async (req, res) => {
 const signOut = async (req, res) => {
   try {
     await auth.revokeRefreshTokens(req.user.uid);
-    res.status(200).send({ message: 'User signed out successfully' });
+    res.status(200).send({ message: "User signed out successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: "Failed to sign out user" });
