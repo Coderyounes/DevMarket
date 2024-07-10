@@ -1,6 +1,7 @@
 const Proposal = require('../models/jobapplication');
 const Freelance = require('../models/freelance');
 const Project = require('../models/projects');
+const Message = require('../models/message');
 // proposal, need to check the Project status before if it closed so show message say it closed
 // Freelance Controllers
 const sendProposal = async (req, res) => {
@@ -119,8 +120,10 @@ const rejectProposal = async (req, res) => {
   }
 };
 
+// Accept proposal Trigger to sendMessageTemplate
 const acceptProposal = async (req, res) => {
   const proposalid = req.params.id;
+  const employerid = req.user.uid;
   try {
     const proposal = await Proposal.findByIdAndUpdate(
       { _id: proposalid },
@@ -130,6 +133,9 @@ const acceptProposal = async (req, res) => {
       proposal.projectid,
       { status: 'in talks' },
     );
+    const freelanceId = proposal.freelancerid;
+    const text = 'Hello This is a template';
+    await Message.sendMessage(employerid, freelanceId, text);
     return res.status(200).send('Proposal Accepted');
   } catch (error) {
     return res.status(500).send('Internal Server Error');

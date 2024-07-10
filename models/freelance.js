@@ -40,16 +40,14 @@ const freelanceSchema = new mongoose.Schema({
     min: [18, 'Must be at least 18 years old'],
     max: 100,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
   firebaseUID: {
     type: String,
   },
   city: { type: String },
   photo: { type: Buffer },
   skills: { type: String },
+}, {
+  timestamps: true,
 });
 
 const Freelance = mongoose.model('Freelance', freelanceSchema);
