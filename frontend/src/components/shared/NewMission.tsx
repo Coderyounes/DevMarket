@@ -37,14 +37,14 @@ export default function NewMission({
 
           <form className="mt-4" action="#">
             <label htmlFor="emails-list" className="text-sm text-gray-700 ">
-              Email address
+              Description
             </label>
 
             <label className="block mt-3" htmlFor="description">
               <textarea
                 name="description"
                 id="description"
-                placeholder="my propossl is the following"
+                placeholder="I will make you"
                 value="devdhaif@gmail.com"
                 className="block w-full px-4 py-3 text-sm text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40    "
               />

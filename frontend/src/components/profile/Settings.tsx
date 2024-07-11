@@ -53,7 +53,7 @@ export default function Settings() {
   };
 
   useEffect(() => {
-    if (skills.length > 0 && user["usertype"] == 'employer') {
+    if (skills.length > 0 && user["usertype"] !== 'employer') {
       setValue("skills", skills.join(","));
     }
   }, [skills, setValue]);
@@ -64,7 +64,7 @@ export default function Settings() {
     {
       onSuccess: (data) => {
         // setBookDetails(data);
-        console.log("got user profile cred", data);
+        // console.log("got user profile cred", data);
         if (data.skills) {
           setSkills(data.skills.split(","));
         }

@@ -8,8 +8,8 @@ const { auth } = require("../config/firebase-admin-config");
 const getModelByUserType = require("../utils/getModelByUserType");
 require("dotenv").config({ path: "./utils/.env" });
 require("../config/firebase-config");
-const freelance = require('../models/freelance');
-
+const freelance = require("../models/freelance");
+const employer = require("../models/employer");
 
 const signUp = async (req, res) => {
   const {
@@ -80,7 +80,8 @@ const signUp = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, userType } = req.body;
+  let user;
 
   try {
     const auth = getAuth();
@@ -88,7 +89,19 @@ const login = async (req, res) => {
     const userRecord = await signInWithEmailAndPassword(auth, email, password);
     const idToken = await userRecord.user.getIdToken();
 
-    const user = await freelance.findOne({ firebaseUID: userRecord.user.uid });
+    if (userType == "freelancer") {
+      user = await freelance.findOne({ firebaseUID: userRecord.user.uid }).select("-__v");
+    } else if (userType == "employer") {
+      user = await employer.findOne({ firebaseUID: userRecord.user.uid }).select("-__v");
+    } else {
+      res
+        .status(404)
+        .json({
+          error: "Login failed. Define your account type (freelancer-employer)",
+        });
+    }
+
+    console.log(user);
     res.json({ idToken, ...user["_doc"] });
   } catch (err) {
     console.error("Login error", err);

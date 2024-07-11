@@ -14,7 +14,7 @@ export default function Profile() {
   const user = useAuthStore((state) => state.user);
   const [showModel, setShowModel] = useState(false);
   // const setUser = useAuthStore((state) => state.setUser);
-  console.log(user, "user data");
+  // console.log(user, "user data");
 
   // const { isLoading } = useSWRImmutable(
   //   `${BASE_URL}/book/get-book/${params.book_id}`,
@@ -29,6 +29,23 @@ export default function Profile() {
   //   }
   // );
 
+  const { isLoading } = useSWR(
+    `${BASE_URL}/${user["usertype"] as string}/userProfile`,
+    getDataAuth,
+    {
+      onSuccess: (data) => {
+        // setBookDetails(data);
+        // console.log("got user profile cred", data);
+        if (data.skills) {
+          setSkills(data.skills.split(","));
+        }
+      },
+      onError: (err) => {
+        console.log(err, "profile details err");
+      },
+    }
+  );
+
   return (
     <section>
       {showModel && user["usertype"] == "employer" && (
@@ -41,12 +58,6 @@ export default function Profile() {
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-stretch justify-between sm:items-center">
-              {/* <img
-                className="object-cover w-32 h-auto sm:-mb-14 shrink-0 rounded-xl"
-                src="https://landingfoliocom.imgix.net/store/collection/niftyui/images/mint-success/3/image.png"
-                alt=""
-              /> */}
-
               <div className="flex flex-col justify-between flex-1 ml-8 sm:flex-row sm:items-center sm:space-x-6">
                 <div className="sm:flex-1">
                   <p className="text-xl font-bold text-white">

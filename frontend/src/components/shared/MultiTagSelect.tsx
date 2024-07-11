@@ -7,7 +7,6 @@ type TagType = [
 ];
 
 export default function MultiTagSelect({ props }: { props: TagType }) {
-  console.log(props, "multi choice props");
   const [tags, setTags, availableTags] = props;
   const [expanded, setExpanded] = useState<boolean>(false);
 

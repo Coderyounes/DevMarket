@@ -10,12 +10,22 @@ const ACCEPTED_IMAGE_TYPES = [
 ];
 
 export const serviceSchema = z.object({
-  owner: z.string().min(5, "username is required").max(50),
   title: z
     .string()
     .min(15, "title should be more than 15 charaacters")
     .max(150, "the title should be less than 150 characters"),
-  image: z
+  description: z
+    .string()
+    .min(20, "your description should be more than 20 characters")
+    .max(300, "your description should be less than 300 characters"),
+  price: z.preprocess(
+    (val) => Number(val),
+    z.number().int().min(0, { message: "price should be above 0" }).positive()
+  ),
+  tags: z.string().refine((value) => value.split(",").length > 0, {
+    message: "There should be at least one tag",
+  }),
+  images: z
     .any()
     .refine((files) => files?.length == 1, "Image is required.")
     .refine(
@@ -26,16 +36,4 @@ export const serviceSchema = z.object({
       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
       ".jpg, .jpeg, .png and .webp files are accepted."
     ),
-  category: z.enum([...ALL_CATEGORIES] as [string, ...string[]]),
-  price: z.number().gte(0, "rating should be bigger than 0"),
-
-  description: z
-    .string()
-    .min(30, "your description should be more than 30 characters")
-    .max(300, "your description should be less than 300 characters"),
-  rating: z
-    .number()
-    .gte(0, "rating should be bigger than 0")
-    .lte(5, "rating should be less than 5")
-    .optional(),
 });
