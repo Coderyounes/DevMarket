@@ -2,24 +2,29 @@ const Project = require('../models/projects');
 const Employer = require('../models/employer');
 
 const createProject = async (req, res) => {
-  const employer = await Employer.findOne({ firebaseUID: req.user.uid });
-  const {
-    title, description, price, delay,
-  } = req.body;
   try {
+    const employer = await Employer.findOne({ firebaseUID: req.user.uid });
+    const { title, description, price, delay } = req.body;
+
     const data = {
       title,
       description,
       price,
       delay,
-      employer,
+      employer: employer._id, // It's better to just store the employer's _id
       status: 'Open',
     };
-    const newproject = new Project(data);
-    newproject.save();
-    return res.status(201).send('new Project added');
+
+    const newProject = new Project(data);
+    const savedProject = await newProject.save();
+
+    return res.status(201).json({
+      message: 'New Project added',
+      projectId: savedProject._id
+    });
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    console.error('Error creating project:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 };
 
