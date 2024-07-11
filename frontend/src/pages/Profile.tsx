@@ -8,6 +8,9 @@ import Cookies from "js-cookie";
 import Missions from "../components/profile/Missions";
 import NewMission from "../components/shared/NewMission";
 import NewService from "../components/shared/NewService";
+import useSWR from "swr";
+import { getDataAuth } from "../utils/constants/api_caller";
+import useSWRImmutable from 'swr/immutable'
 
 export default function Profile() {
   const [showSettings, setShowSettings] = useState(false);
@@ -29,22 +32,22 @@ export default function Profile() {
   //   }
   // );
 
-  const { isLoading } = useSWR(
-    `${BASE_URL}/${user["usertype"] as string}/userProfile`,
-    getDataAuth,
-    {
-      onSuccess: (data) => {
-        // setBookDetails(data);
-        // console.log("got user profile cred", data);
-        if (data.skills) {
-          setSkills(data.skills.split(","));
-        }
-      },
-      onError: (err) => {
-        console.log(err, "profile details err");
-      },
-    }
-  );
+  // const { isLoading } = useSWR(
+  //   `${BASE_URL}/${user["usertype"] as string}/userProfile`,
+  //   getDataAuth,
+  //   {
+  //     onSuccess: (data) => {
+  //       // setBookDetails(data);
+  //       // console.log("got user profile cred", data);
+  //       if (data.skills) {
+  //         // setSkills(data.skills.split(","));
+  //       }
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "profile details err");
+  //     },
+  //   }
+  // );
 
   return (
     <section>

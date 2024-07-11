@@ -94,6 +94,53 @@ export default function SignIn() {
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
+        <div className="mt-4">
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="usertype"
+              className="block text-sm text-gray-800 capitalize"
+            >
+              Account type
+            </label>
+          </div>
+          {errors.usertype && (
+            <p className="mt-1 text-xs italic text-red-500">
+              {errors.usertype?.message}
+            </p>
+          )}
+          <div className="flex flex-row justify-evenly mb-4">
+            <div className="">
+              <label
+                htmlFor={"usertype_freelancer"}
+                className="ml-2 text-sm font-thin mx-2"
+              >
+                Freelancer
+              </label>
+              <input
+                id="usertype_freelancer"
+                {...register("usertype")}
+                type="radio"
+                value={"freelancer"}
+                className="  px-4 py-2 mt-2  bg-white border rounded-lg    focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor={"usertype_freelancer"}
+                className="ml-2 text-sm font-thin mx-2"
+              >
+                Employer
+              </label>
+              <input
+                id="usertype_employer"
+                {...register("usertype")}
+                type="radio"
+                value={"employer"}
+                className="  px-4 py-2 mt-2  bg-white border rounded-lg    focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              />
+            </div>
+          </div>
+        </div>
         <div className="mt-6">
           <button
             type="submit"

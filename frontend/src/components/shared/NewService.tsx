@@ -37,26 +37,25 @@ export default function NewService({
   });
 
   const onSubmit: SubmitHandler<serviceSchemaType> = (data) => {
-    console.log(data, "start creatig new service");
-    console.log(data);
     startPostingService({ ...data, images: data.images[0] });
   };
 
   if (NewServiceResponse) {
-    // navigate("/profile");
+    console.log(NewServiceResponse, "service created res");
     toast.success("new service have been created");
+    navigate(`/freelancer_details/${NewServiceResponse._id}`);
   }
 
   return (
     <div
-      className="fixed inset-0 z-10 overflow-y-auto"
+      className="fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-70"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
     >
       <Toaster />
 
-      <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+      <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0 opacity-100">
         <span
           className="hidden sm:inline-block sm:h-screen sm:align-middle"
           aria-hidden="true"

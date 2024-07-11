@@ -8,6 +8,8 @@ const createService = async (req, res) => {
 
   const { title, description, price, tags } = req.body;
 
+  const imagePaths = req.files.map(file => file.path);
+
   try {
     const freelance = await Freelance.findOne({ firebaseUID: req.user.uid });
     const images = req.files.map((file) => file.path);
@@ -17,8 +19,8 @@ const createService = async (req, res) => {
       description,
       price,
       tags,
-      images,
-      freelance,
+      images: imagePaths,
+      freelance: req.user._id,
     };
 
     const newService = new Service(data);

@@ -8,7 +8,7 @@ export default function NewMission({
 }) {
   return (
     <div
-      className="fixed inset-0 z-10 overflow-y-auto"
+      className="fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-70"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"

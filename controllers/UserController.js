@@ -80,7 +80,7 @@ const signUp = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password, userType } = req.body;
+  const { email, password, usertype } = req.body;
   let user;
 
   try {
@@ -89,9 +89,9 @@ const login = async (req, res) => {
     const userRecord = await signInWithEmailAndPassword(auth, email, password);
     const idToken = await userRecord.user.getIdToken();
 
-    if (userType == "freelancer") {
+    if (usertype == "freelancer") {
       user = await freelance.findOne({ firebaseUID: userRecord.user.uid }).select("-__v");
-    } else if (userType == "employer") {
+    } else if (usertype == "employer") {
       user = await employer.findOne({ firebaseUID: userRecord.user.uid }).select("-__v");
     } else {
       res

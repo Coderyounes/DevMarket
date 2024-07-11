@@ -63,6 +63,7 @@ router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, Co
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
+router.get('/service/:id', checkIdValidity, visitorController.readService);
 router.get('/allProjects', visitorController.allProjects);
 router.get('/latest', visitorController.latestDev);
 

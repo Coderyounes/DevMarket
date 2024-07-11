@@ -35,4 +35,5 @@ export const loginSchema = z.object({
     .string()
     .min(1, "Password is required")
     .min(8, "Password must have more than 8 characters"),
+  usertype: z.enum(["freelancer", "employer"]),
 });

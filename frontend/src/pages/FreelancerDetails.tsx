@@ -4,6 +4,10 @@ import { getRandomNumber } from "../utils/constants/func";
 import { ServiceCardType } from "../utils/constants/types";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../utils/constants/config";
+import { getData } from "../utils/constants/api_caller";
+import useSWRImmutable from "swr/immutable";
+import Loading from "../components/shared/Loading";
 
 export default function FreelancerDetails() {
   const { freelancer_id } = useParams();
@@ -11,7 +15,25 @@ export default function FreelancerDetails() {
   console.log(freelancer_id);
 
   const [showDescription, setShowDescription] = useState(true);
-  const data = SERVICE_LIST[freelancer_id as number];
+  const [data, setData] = useState();
+
+  const { isLoading } = useSWRImmutable(
+    `${BASE_URL}/service/${freelancer_id}`,
+    getData,
+    {
+      onSuccess: (data) => {
+        setData(data);
+      },
+      onError: (err) => {
+        console.log(err, "book details err");
+      },
+    }
+  );
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <section className="py-12 bg-gray-50 sm:py-16">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -36,7 +58,7 @@ export default function FreelancerDetails() {
             </h1>
 
             <div className="flex items-center mt-5">
-              <Stars rating={data.rating as number} />
+              {/* <Stars rating={data.rating as number} /> */}
               <p className="ml-2 text-sm font-medium text-gray-400">
                 2 Reviews
               </p>
@@ -52,24 +74,6 @@ export default function FreelancerDetails() {
             </div>
 
             <ul className="mt-8 space-y-3">
-              {/* <li className="flex items-center text-sm font-medium text-gray-500">
-                <svg
-                  className="w-5 h-5 mr-2.5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                Free shipping worldwide
-              </li> */}
-
               <li className="flex items-center text-sm font-medium text-gray-500">
                 <svg
                   className="w-5 h-5 mr-2.5 text-gray-400"
