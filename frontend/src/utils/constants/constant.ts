@@ -1,5 +1,18 @@
 import { FreelancerCardType, ServiceCardType } from "./types";
 
+export const availableSkills = [
+  "Machine Learning",
+  "Data Analysis",
+  "Cloud Computing",
+  "Cybersecurity",
+  "Blockchain",
+  "DevOps",
+  "Software Development",
+  "Artificial Intelligence",
+  "Project Management",
+  "Digital Marketing"
+];
+
 export const CategorySettingsSlider = {
   // centerMode: true,
   dots: true,

@@ -4,7 +4,7 @@ import { getRandomNumber } from "../utils/constants/func";
 import { ServiceCardType } from "../utils/constants/types";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import Proposal from "../components/shared/Proposal_Model";
+import Proposal from "../components/shared/Proposal";
 
 export default function MissionDetails() {
   const [showProposal, setShowProposal] = useState(false);

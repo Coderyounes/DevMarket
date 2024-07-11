@@ -1,20 +1,5 @@
 import { z } from "zod";
 
-const calculateAge = (birthDate: Date): number => {
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDifference = today.getMonth() - birthDate.getMonth();
-
-  if (
-    monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
-
-  return age;
-};
-
 export const registrationSchema = z.object({
   email: z.string().email("invalid email").min(1, "email is required"),
   password: z

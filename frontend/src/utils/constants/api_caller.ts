@@ -123,9 +123,9 @@ export const patchDataAuth = async (url: string): Promise<any> => {
   }
 };
 
-export const putAuth = async (url: string): Promise<any> => {
+export const putAuth = async (url: string, { arg }: any): Promise<any> => {
   try {
-    const response: AxiosResponse = await axios.put(url, null, {
+    const response: AxiosResponse = await axios.put(url, arg, {
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },

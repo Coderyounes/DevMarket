@@ -45,7 +45,6 @@ export default function SignIn() {
     delete LoginResponse.__v;
     setUser(LoginResponse);
     Cookies.set("token", LoginResponse.idToken);
-
     navigate("/profile");
   }
 

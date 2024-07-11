@@ -7,22 +7,20 @@ import { postDataAuth } from "../../utils/constants/api_caller";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants/config";
 import { ProfileType } from "../../utils/constants/types";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
   const [isOpen, setOpen] = useState(false);
   const [token, setToken] = useState<string | undefined>();
-
   const user: ProfileType = useAuthStore((state) => state.user);
   const resetUser = useAuthStore((state) => state.reset);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("getting alled from nav after sign in"), user;
     if (user.idToken) {
       setToken(user.idToken);
     }
-    console.log(user, "context");
   }, [user]);
 
   const { trigger: startLoggingOut } = useSWRMutation(
@@ -32,6 +30,7 @@ export default function Navbar() {
       revalidate: false,
       onSuccess: (data) => {
         resetUser();
+        Cookies.remove("token")
         setToken(undefined);
         navigate("/");
       },
