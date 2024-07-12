@@ -1,7 +1,7 @@
-const freelance = require('../models/freelance');
-const Project = require('../models/projects');
-const Service = require('../models/services');
-require('dotenv').config({ path: './utils/.env' });
+const freelance = require("../models/freelance");
+const Project = require("../models/projects");
+const Service = require("../models/services");
+require("dotenv").config({ path: "./utils/.env" });
 
 const discret = process.env.DISCRET;
 
@@ -11,7 +11,7 @@ const getProfile = async (req, res) => {
   try {
     const user = await freelance.findOne({ _id: id }).select(discret);
     if (!user) {
-      return res.status(404).json({ message: 'Freelance Profile Not Found' });
+      return res.status(404).json({ message: "Freelance Profile Not Found" });
     }
     res.status(200).json(user);
   } catch (error) {
@@ -26,10 +26,14 @@ const allProfiles = async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    const users = await freelance.find().select(discret).skip(skip).limit(limit); // should add _id
+    const users = await freelance
+      .find()
+      .select(discret)
+      .skip(skip)
+      .limit(limit); // should add _id
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 };
 
@@ -39,12 +43,12 @@ const readProject = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
     if (!project) {
-      return res.status(404).send('Project Not Found');
+      return res.status(404).send("Project Not Found");
     }
 
     res.status(200).json(project);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -55,22 +59,25 @@ const allProjects = async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    const projects = await Project.find().select(discret).skip(skip).limit(limit);
+    const projects = await Project.find()
+      .select(discret)
+      .skip(skip)
+      .limit(limit);
     return res.status(200).send(projects);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 const readService = async (req, res) => {
   try {
     const service = await Service.findById(req.params.id);
     if (!service) {
-      return res.status(404).send('Service Not Found');
+      return res.status(404).send("Service Not Found");
     }
 
     return res.status(200).json(service);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -81,10 +88,13 @@ const allServices = async (req, res) => {
 
     const skip = (page - 1) * limit;
 
-    const service = await Service.find().select(discret).skip(skip).limit(limit);
+    const service = await Service.find()
+      .select(discret)
+      .skip(skip)
+      .limit(limit);
     return res.status(200).send(service);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -94,10 +104,16 @@ const latestDev = async (req, res) => {
     return res.status(200).json(freelancers);
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
 module.exports = {
-  getProfile, allProfiles, readProject, allProjects, readService, allServices, latestDev,
+  getProfile,
+  allProfiles,
+  readProject,
+  allProjects,
+  readService,
+  allServices,
+  latestDev,
 };

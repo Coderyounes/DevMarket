@@ -55,7 +55,7 @@ export default function Faq() {
               </p>
               <p className="mt-3 text-base text-gray-600">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt{" "}
+                eiusmod tempor incididunt
                 <a
                   href="#"
                   title=""

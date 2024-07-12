@@ -1,16 +1,36 @@
-import { SERVICE_LIST } from "../utils/constant";
-import { ServiceCardType } from "../utils/types";
+import { SERVICE_LIST } from "../utils/constants/constant";
+import { ServiceCardType } from "../utils/constants/types";
 import MissionCard from "../components/Home/MissionCard";
 import { Link } from "react-router-dom";
+import useSWR from "swr";
+import { BASE_URL } from "../utils/constants/config";
+import { getData } from "../utils/constants/api_caller";
+import { useState } from "react";
 
 export default function Employers() {
+  const [employers, setEmployers] = useState<ServiceCardType[] | undefined>();
+
+  const { isLoading, data } = useSWR(`${BASE_URL}/allProjects`, getData, {
+    revalidate: true,
+    onSuccess: (data) => {
+      console.log(data, "employer _ getting all");
+      setEmployers(data);
+    },
+    onError: (err) => {
+      console.log(err, "employer listing err");
+    },
+  });
+
   return (
     <section className="container mx-auto ">
-      <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-4 sm:grid-cols-2">
-        {SERVICE_LIST.map((elem: ServiceCardType, index) => {
-          return <MissionCard key={index} data={elem} />;
-        })}
-      </div>
+      {employers && (
+        <div className="px-4 mt-10 grid grid-cols-1  gap-6  xl:grid-cols-3 sm:grid-cols-2">
+          {employers.map((elem: ServiceCardType, index) => {
+            console.log(elem)
+            return <MissionCard key={index} data={elem} />;
+          })}
+        </div>
+      )}
 
       <div className="flex justify-center w-full mt-8">
         <Link
@@ -26,9 +46,9 @@ export default function Employers() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M7 16l-4-4m0 0l4-4m-4 4h18"
               />
             </svg>
@@ -52,9 +72,9 @@ export default function Employers() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>

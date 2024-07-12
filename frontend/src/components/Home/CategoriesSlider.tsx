@@ -1,6 +1,6 @@
-import { ALL_CATEGORIES } from "../../utils/constant";
+import { ALL_CATEGORIES } from "../../utils/constants/constant";
 import CategoryElem from "./CategoryElem";
-import { CategorySettingsSlider } from "../../utils/constant";
+import { CategorySettingsSlider } from "../../utils/constants/constant";
 
 import Slider from "react-slick";
 
@@ -18,7 +18,7 @@ export default function CategoriesSlider() {
         <div className="slider-container">
           <Slider {...CategorySettingsSlider}>
             {ALL_CATEGORIES.map((elem, index) => {
-              return <CategoryElem key={index} name={elem} />;
+              return <CategoryElem key={index} obj={elem} />;
             })}
           </Slider>
         </div>
