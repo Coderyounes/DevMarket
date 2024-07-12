@@ -9,7 +9,8 @@ import { postFormAuth } from "../../utils/constants/api_caller";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../utils/store/store";
 import useSWRMutation from "swr/mutation";
-import { ALL_CATEGORIES } from "../../utils/constants/constant";
+
+
 
 export default function NewService({
   close,

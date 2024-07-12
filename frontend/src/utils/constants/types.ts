@@ -16,7 +16,9 @@ export type ServiceCardType = {
   category: string;
   price: number;
   description: string;
-  rating?: number;
+  updatedAt: string;
+  delay: string;
+  status: string;
 };
 
 export type ProfileType = {
@@ -29,4 +31,5 @@ export type ProfileType = {
   age: number | null;
   idToken: string | null;
   firebaseUID: string | null;
+  skills: string | null;
 };

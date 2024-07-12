@@ -1,7 +1,9 @@
+import { formatReadableDate } from "../../utils/constants/func";
 import { ServiceCardType } from "../../utils/constants/types";
 import { Link } from "react-router-dom";
 
 export default function MissionCard({ data }: { data: ServiceCardType }) {
+  console.log(data, "mission card");
   return (
     <Link
       to={`/mission_details/${data.id}`}
@@ -45,11 +47,12 @@ export default function MissionCard({ data }: { data: ServiceCardType }) {
           </g>
         </svg>
 
+        <h1 className="mx-3 text-lg font-semibold text-white">{data.title}</h1>
         <h1 className="mx-3 text-lg font-semibold text-white">{data.price}</h1>
       </div>
 
       <div className="px-6 py-4">
-        <h1 className="text-xl font-semibold text-gray-800 ">{data.owner}</h1>
+        <h1 className="text-xl font-semibold text-gray-800 ">{data.delay}</h1>
 
         <p className="py-2 text-gray-700 text-xs">
           {data.description.slice(0, 150)}...
@@ -104,7 +107,7 @@ export default function MissionCard({ data }: { data: ServiceCardType }) {
             </g>
           </svg>
 
-          <h1 className="px-2 text-sm">{data.category}</h1>
+          <h1 className="px-2 text-sm">{data.status}</h1>
         </div>
 
         <div className="flex items-center mt-4 text-gray-700 ">
@@ -145,7 +148,7 @@ export default function MissionCard({ data }: { data: ServiceCardType }) {
             </g>
           </svg>
 
-          <h1 className="px-2 text-sm">{data.posted_at.toDateString()}</h1>
+          <h1 className="px-2 text-sm">{formatReadableDate(data.updatedAt)}</h1>
         </div>
       </div>
     </Link>

@@ -1,6 +1,6 @@
 import Stars from "../components/shared/Stars";
 import { SERVICE_LIST } from "../utils/constants/constant";
-import { getRandomNumber } from "../utils/constants/func";
+import { formatReadableDate, getRandomNumber } from "../utils/constants/func";
 import { ServiceCardType } from "../utils/constants/types";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -112,7 +112,7 @@ export default function MissionDetails() {
                     ></path>
                   </g>
                 </svg>
-                {data.posted_at.toDateString()}
+                {formatReadableDate(data.updatedAt)}
               </li>
             </ul>
 

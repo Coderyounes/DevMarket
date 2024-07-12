@@ -9,7 +9,10 @@ export const profileSchema = z.object({
     .string()
     .min(1, "last name is required")
     .min(4, "last name must have more than 4 characters"),
-  skills: z.string().refine((value) => value.split(",").length > 0, {
-    message: "There should be at least one skill",
-  }),
+  skills: z
+    .string()
+    .refine((value) => value.split(",").length > 0, {
+      message: "There should be at least one skill",
+    })
+    .optional(),
 });

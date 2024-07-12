@@ -12,8 +12,7 @@ import MultiTagSelect from "../shared/MultiTagSelect";
 import { useState } from "react";
 import { availableSkills } from "../../utils/constants/constant";
 import { useEffect } from "react";
-import useSWR from 'swr'
-
+import useSWR from "swr";
 
 export default function Settings() {
   const [skills, setSkills] = useState<string[]>(["programmer"]);
@@ -53,7 +52,7 @@ export default function Settings() {
   };
 
   useEffect(() => {
-    if (skills.length > 0 && user["usertype"] !== 'employer') {
+    if (skills.length > 0 && user["usertype"] !== "employer") {
       setValue("skills", skills.join(","));
     }
   }, [skills, setValue]);
@@ -120,10 +119,10 @@ export default function Settings() {
             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
         </div>
-        {skills && (
+        {user.usertype === "freelance" && (
           <div className="mt-6">
-            <label className="block text-sm text-gray-800 capitalize ">
-              skills
+            <label className="block text-sm text-gray-800 capitalize">
+              Skills
             </label>
 
             {errors.skills && (

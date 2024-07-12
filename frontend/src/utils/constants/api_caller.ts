@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 export const getData = async (url: string): Promise<any> => {
   try {
     const response: AxiosResponse = await axios.get(url);
-    return { ...response.data, status: response.status };
+    return response.data;
   } catch (error) {
     console.error("Error in getData:", error);
     if (axios.isAxiosError(error)) {

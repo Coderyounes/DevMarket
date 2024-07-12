@@ -39,7 +39,7 @@ router.delete('/cancelProposal/:id', checkIdValidity, authenticate, checkFreelan
 router.get('/myProposals', authenticate, checkFreelancer, jobproposal.myProposals);
 router.get('/myProposal/:id', checkIdValidity, authenticate, checkFreelancer, jobproposal.oneProposal);
 // Employer routes
-router.get('/employer/Profile', authenticate, checkEmployer, employerController.employerProfile);
+router.get('/employer/userProfile', authenticate, checkEmployer, employerController.employerProfile);
 router.put('/employer/updateProfile', authenticate, checkEmployer, employerController.updateProfile);
 router.delete('/employer/deleteProfile', authenticate, checkEmployer, employerController.deleteProfile);
 // Project routes
