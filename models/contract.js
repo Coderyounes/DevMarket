@@ -52,6 +52,10 @@ const contractSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  paymentIntent: {
+    type: String,
+    required: false,
+  },
 }, {
   timestamps: true,
 });

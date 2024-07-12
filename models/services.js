@@ -28,6 +28,14 @@ const serviceSchema = new mongoose.Schema({
   freelance: { type: mongoose.Schema.Types.ObjectId, ref: 'freelances' },
 }, {
   timestamps: true,
+}, {
+  toJSON: { virtuals: true },
+});
+
+serviceSchema.virtual('photoUrl').get(function() {
+  if (this.photo) {
+    return `data:image/jpeg;base64,${this.photo.toString('base64')}`;
+  }
 });
 
 const service = mongoose.model('Service', serviceSchema);
