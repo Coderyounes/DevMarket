@@ -1,12 +1,13 @@
 // server.js
 
 const express = require('express');
+const cors = require('cors');
 const indexRouter = require('./routes/index');
 const DBClient = require('./utils/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+app.use(cors());
 // Middleware
 app.use(express.json());
 

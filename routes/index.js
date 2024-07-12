@@ -65,15 +65,12 @@ router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
 router.get('/allProjects', visitorController.allProjects);
+router.get('/allServices', visitorController.allServices);
+router.get('/services/:id', checkIdValidity, visitorController.readService);
 router.get('/latest', visitorController.latestDev);
-// router.get('/project_sample/:category', visitorController.project_sample);
 
 // messages
-router.post('/sendMessages', authenticate, MessageController.sendMessage); // TODO: MiddleCheck if he can send Messages
-router.get('/messages/', authenticate, MessageController.getMessages); // TODO: check if he has permission to read messages
+router.post('/sendMessages', authenticate, MessageController.sendMessage);
+router.get('/messages/', authenticate, MessageController.getMessages);
 
-/*
-add new controller sendMessage : that send a template message
-integrate that controller with the acceptProposal route to trigger after the proposal accepting
- */
 module.exports = router;

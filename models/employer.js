@@ -57,6 +57,14 @@ const EmployerSchema = new mongoose.Schema({
   },
   city: { type: String },
   photo: { type: Buffer },
+}, {
+  toJSON: { virtuals: true },
+});
+
+EmployerSchema.virtual('photoUrl').get(function() {
+  if (this.photo) {
+    return `data:image/jpeg;base64,${this.photo.toString('base64')}`;
+  }
 });
 
 const employer = mongoose.model('employers', EmployerSchema);
