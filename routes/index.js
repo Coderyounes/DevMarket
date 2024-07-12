@@ -10,6 +10,7 @@ const upload = require('../middleware/uploadMiddleware');
 const jobproposal = require('../controllers/JobApplicationController');
 const ContractController = require('../controllers/ContractController');
 const MessageController = require('../controllers/MessageController');
+const StripeController = require('../controllers/StripeControllers');
 const { authenticate } = require('../middleware/authMiddleware');
 const { checkFreelancer, checkEmployer } = require('../middleware/CheckPermissionMiddleware');
 
@@ -56,23 +57,20 @@ router.post('/contracts/:id', checkIdValidity, authenticate, checkEmployer, Cont
 router.put('/updateContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.updateContract);
 router.delete('/deleteContract/:id', checkIdValidity, authenticate, checkEmployer, ContractController.deleteContract);
 router.get('/readContract/:id', checkIdValidity, authenticate, ContractController.readContract); // Employer and Freelance can read Contract
-router.patch('/acceptContract/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.acceptContract);
+router.patch('/acceptContract/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.acceptContract, StripeController.handlePaymentWorkflow);
 router.patch('/deliver/:id', checkIdValidity, authenticate, checkFreelancer, ContractController.deliverWork);
-router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, ContractController.acceptWork);
+router.patch('/acceptWork/:id', checkIdValidity, authenticate, checkEmployer, ContractController.acceptWork, StripeController.handleDeliveryAcceptance);
 // unauth user routes
 router.get('/getProfile/:id', checkIdValidity, visitorController.getProfile);
 router.get('/allProfile', visitorController.allProfiles);
 router.get('/project/:id', checkIdValidity, visitorController.readProject);
 router.get('/allProjects', visitorController.allProjects);
+router.get('/allServices', visitorController.allServices);
+router.get('/services/:id', checkIdValidity, visitorController.readService);
 router.get('/latest', visitorController.latestDev);
-// router.get('/project_sample/:category', visitorController.project_sample);
 
 // messages
-router.post('/sendMessages', authenticate, MessageController.sendMessage); // TODO: MiddleCheck if he can send Messages
-router.get('/messages/', authenticate, MessageController.getMessages); // TODO: check if he has permission to read messages
+router.post('/sendMessages', authenticate, MessageController.sendMessage);
+router.get('/messages/', authenticate, MessageController.getMessages);
 
-/*
-add new controller sendMessage : that send a template message
-integrate that controller with the acceptProposal route to trigger after the proposal accepting
- */
 module.exports = router;

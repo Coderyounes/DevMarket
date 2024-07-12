@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <img id="employer-photo" src="" alt="Employer Photo">
+    <script>
+        const token = 'your_token_here'; // Replace with your actual token
+
+        fetch('http://localhost:3000/employer/Profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const img = document.querySelector('#employer-photo');
+            img.src = data.photoUrl;
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
