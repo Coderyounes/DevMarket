@@ -1,20 +1,18 @@
-const mongoose = require('mongoose');
-const Employer = require('../models/employer');
-const Freelance = require('../models/freelance');
-const Contract = require('../models/contract');
-const Project = require('../models/projects');
-const Proposal = require('../models/jobapplication');
+const mongoose = require("mongoose");
+const Employer = require("../models/user");
+const Freelance = require("../models/freelance");
+const Contract = require("../models/contract");
+const Project = require("../models/mission");
+const Proposal = require("../models/application");
 
 const createContract = async (req, res) => {
   const projectId = req.params.id;
   const employerId = req.user.uid;
-  const {
-    job, requirement, price, delay,
-  } = req.body;
+  const { job, requirement, price, delay } = req.body;
   const project = await Project.findById({ _id: projectId });
   console.log(employerId);
-  if (project.status === 'Closed') {
-    return res.status(400).send('Project Closed');
+  if (project.status === "Closed") {
+    return res.status(400).send("Project Closed");
   }
   try {
     const data = {
@@ -29,30 +27,31 @@ const createContract = async (req, res) => {
     newContract.save();
     return res.status(201).json(newContract);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
 const updateContract = async (req, res) => {
   const ContractId = req.params.id;
-  const {
-    job, requirement, price, delay,
-  } = req.body;
+  const { job, requirement, price, delay } = req.body;
   try {
     const contract = await Contract.findById({ _id: ContractId });
-    if (contract.status === 'ongoing') {
-      return res.status(403).send('Forbidden Action');
+    if (contract.status === "ongoing") {
+      return res.status(403).send("Forbidden Action");
     }
     await Contract.findByIdAndUpdate(
       { _id: ContractId },
       {
-        job, requirement, price, delay,
+        job,
+        requirement,
+        price,
+        delay,
       },
-      { new: true },
+      { new: true }
     );
-    return res.status(201).json('Contract Updated');
+    return res.status(201).json("Contract Updated");
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -61,7 +60,7 @@ const readContract = async (req, res) => {
     const contract = await Contract.findById({ _id: req.params.id });
     return res.status(200).json(contract);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -69,13 +68,13 @@ const deleteContract = async (req, res) => {
   const contractId = req.params.id;
   try {
     const contract = await Contract.findById({ _id: contractId });
-    if (contract.status === 'ongoing') {
-      return res.status(403).send('Forbbiden Action');
+    if (contract.status === "ongoing") {
+      return res.status(403).send("Forbbiden Action");
     }
     await Contract.findByIdAndDelete({ _id: contractId });
-    return res.status(200).send('Contract Deleted');
+    return res.status(200).send("Contract Deleted");
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -87,21 +86,23 @@ const acceptContract = async (req, res, next) => {
     const contract = await Contract.findById({ _id: contractId });
     await Contract.findByIdAndUpdate(
       { _id: contractId },
-      { status: 'ongoing', freelancerId: freelanceId },
-      { new: true },
+      { status: "ongoing", freelancerId: freelanceId },
+      { new: true }
     );
     contract.startAT = new Date();
-    contract.endAT = new Date(contract.startAT.getTime() + 30 * 24 * 60 * 60 * 1000); // calculation not Correct
+    contract.endAT = new Date(
+      contract.startAT.getTime() + 30 * 24 * 60 * 60 * 1000
+    ); // calculation not Correct
     contract.save();
     await Project.findByIdAndUpdate(
       { _id: contract.projectId },
-      { status: 'Closed', freelance: freelanceId },
+      { status: "Closed", freelance: freelanceId }
     );
     next();
     // return res.status(200).send('Contract Accepted');
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -111,13 +112,13 @@ const deliverWork = async (req, res) => {
     const contract = await Contract.findById(contractId);
 
     if (!contract) {
-      return res.status(404).json({ message: 'Contract not found' });
+      return res.status(404).json({ message: "Contract not found" });
     }
     contract.isDelivered = true;
 
     await contract.save();
 
-    return res.status(200).json('Deliver');
+    return res.status(200).json("Deliver");
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -128,18 +129,18 @@ const acceptWork = async (req, res, next) => {
   try {
     const contract = await Contract.findById(contractId);
     if (!contract) {
-      return res.status(404).send('No Contract found !');
+      return res.status(404).send("No Contract found !");
     }
-    contract.status = 'finish';
+    contract.status = "finish";
     const project = await Project.findById(contract.projectId);
-    project.status = 'finish';
+    project.status = "finish";
     await contract.save();
     await project.save();
     next();
     // return res.status(200).send('Work Accepted !');
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 

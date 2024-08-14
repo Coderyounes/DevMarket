@@ -1,7 +1,7 @@
-const Proposal = require('../models/jobapplication');
-const Freelance = require('../models/freelance');
-const Project = require('../models/projects');
-const Message = require('../models/message');
+const Proposal = require("../models/application");
+const Freelance = require("../models/freelance");
+const Project = require("../models/mission");
+const Message = require("../models/message");
 // proposal, need to check the Project status before if it closed so show message say it closed
 // Freelance Controllers
 const sendProposal = async (req, res) => {
@@ -10,13 +10,13 @@ const sendProposal = async (req, res) => {
   try {
     const freelance = await Freelance.findOne({ firebaseUID: req.user.uid });
     if (!freelance) {
-      return res.status(404).send('dev/project not Found');
+      return res.status(404).send("dev/project not Found");
     }
     const data = {
       letter,
       cv,
       freelancerid: freelance.firebaseUID,
-      status: 'pending',
+      status: "pending",
       projectid: req.params.id,
     };
     const newProposal = new Proposal(data);
@@ -31,16 +31,16 @@ const sendProposal = async (req, res) => {
 
     const project = await Project.findOneAndUpdate(
       { _id: req.params.id },
-      update,
+      update
     );
     if (!project) {
-      return res.status(404).send('Resource Not Found');
+      return res.status(404).send("Resource Not Found");
     }
 
-    return res.status(201).send({ message: 'Proposal sent' });
+    return res.status(201).send({ message: "Proposal sent" });
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -50,11 +50,11 @@ const proposalCancel = async (req, res) => {
     await Project.updateOne(
       {},
       { $pull: { applications: { _id: req.params.id } } },
-      { multi: true },
+      { multi: true }
     );
-    return res.status(200).send({ message: 'Proposal deleted' });
+    return res.status(200).send({ message: "Proposal deleted" });
   } catch (error) {
-    return res.status(500).send('Iternal Server Error');
+    return res.status(500).send("Iternal Server Error");
   }
 };
 
@@ -64,7 +64,7 @@ const myProposals = async (req, res) => {
     const proposals = await Proposal.find({ freelanceId });
     return res.status(200).json(proposals);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -74,7 +74,7 @@ const oneProposal = async (req, res) => {
     const proposal = await Proposal.findById({ _id: propsalId });
     return res.status(200).json(proposal);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -87,7 +87,7 @@ const readallproposal = async (req, res) => {
     const proposals = project.applications;
     return res.status(200).json(proposals);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -97,7 +97,7 @@ const readoneproposal = async (req, res) => {
     const proposal = await Proposal.findById({ _id: ProposalID });
     return res.status(200).json(proposal);
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -107,16 +107,16 @@ const rejectProposal = async (req, res) => {
   try {
     await Proposal.findByIdAndUpdate(
       { _id: proposalid },
-      { status: 'rejected' },
+      { status: "rejected" }
     );
     await Project.updateOne(
       {},
       { $pull: { applications: { _id: proposalid } } },
-      { multi: true },
+      { multi: true }
     );
-    return res.status(200).send('Proposal has Been Rejected');
+    return res.status(200).send("Proposal has Been Rejected");
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 
@@ -127,18 +127,15 @@ const acceptProposal = async (req, res) => {
   try {
     const proposal = await Proposal.findByIdAndUpdate(
       { _id: proposalid },
-      { status: 'accepted' },
+      { status: "accepted" }
     );
-    await Project.findByIdAndUpdate(
-      proposal.projectid,
-      { status: 'in talks' },
-    );
+    await Project.findByIdAndUpdate(proposal.projectid, { status: "in talks" });
     const freelanceId = proposal.freelancerid;
-    const text = 'Hello This is a template';
+    const text = "Hello This is a template";
     await Message.sendMessage(employerid, freelanceId, text);
-    return res.status(200).send('Proposal Accepted');
+    return res.status(200).send("Proposal Accepted");
   } catch (error) {
-    return res.status(500).send('Internal Server Error');
+    return res.status(500).send("Internal Server Error");
   }
 };
 

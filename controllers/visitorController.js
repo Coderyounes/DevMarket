@@ -1,5 +1,5 @@
 const freelance = require("../models/freelance");
-const Project = require("../models/projects");
+const Project = require("../models/mission");
 const Service = require("../models/services");
 require("dotenv").config({ path: "./utils/.env" });
 

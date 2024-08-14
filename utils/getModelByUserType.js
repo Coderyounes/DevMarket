@@ -1,14 +1,14 @@
-const Freelance = require('../models/freelance');
-const Employer = require('../models/employer');
+const Freelance = require("../models/freelance");
+const Employer = require("../models/user");
 
 const getModelByUserType = (userType) => {
   switch (userType) {
-    case 'freelance':
+    case "freelance":
       return Freelance;
-    case 'employer':
+    case "employer":
       return Employer;
     default:
-      throw new Error('Invalid user type');
+      throw new Error("Invalid user type");
   }
 };
 

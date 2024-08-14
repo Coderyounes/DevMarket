@@ -1,5 +1,5 @@
-const Message = require('../models/message');
-const Proposal = require('../models/jobapplication');
+const Message = require("../models/message");
+const Proposal = require("../models/application");
 // const Freelance = require('../models/freelance');
 
 const sendTemplateMessage = async (req, res) => {
@@ -12,10 +12,10 @@ const sendTemplateMessage = async (req, res) => {
 
   try {
     await Message.sendMessage(senderId, receiverId, text);
-    return res.status(200).send('Template message sent successfully');
+    return res.status(200).send("Template message sent successfully");
   } catch (error) {
-    console.error('Error sending template message:', error);
-    return res.status(500).send('Failed to send template message');
+    console.error("Error sending template message:", error);
+    return res.status(500).send("Failed to send template message");
   }
 };
 
@@ -28,10 +28,10 @@ const sendMessage = async (req, res) => {
 
   try {
     await Message.sendMessage(senderId, receiverId, text);
-    return res.status(200).send('Message sent successfully');
+    return res.status(200).send("Message sent successfully");
   } catch (error) {
-    console.error('Error sending message:', error);
-    return res.status(500).send('Failed to send message');
+    console.error("Error sending message:", error);
+    return res.status(500).send("Failed to send message");
   }
 };
 
@@ -42,8 +42,8 @@ const getMessages = async (req, res) => {
     const messages = await Message.getMessages(userId);
     res.status(200).json(messages);
   } catch (error) {
-    console.error('Error fetching messages:', error);
-    res.status(500).send('Failed to fetch messages');
+    console.error("Error fetching messages:", error);
+    res.status(500).send("Failed to fetch messages");
   }
 };
 
